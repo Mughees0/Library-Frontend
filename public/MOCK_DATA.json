@@ -1,0 +1,122 @@
+[
+  {
+    "ISBN": "528388741-3",
+    "title": "Theatre of Blood",
+    "description": "Oth recurrent vertebral dislocation, sacr/sacrocygl region",
+    "author": "Carlynn Dinnington",
+    "publisher": "Ruecker Group",
+    "borrowed": false,
+    "borrowerId": "01GW3SZPHMHFX53RSE9F3TRC9Q",
+    "publishedDate": "29.08.2022",
+    "borrowDate": "31/03/2022",
+    "returnDate": "06/02/2023"
+  },
+  {
+    "ISBN": "875170020-4",
+    "title": "Sphinx",
+    "description": "Superficial injury of unspecified parts of thorax",
+    "author": "Johnath Rapson",
+    "publisher": "Murphy Group",
+    "borrowed": false,
+    "borrowerId": "01GW3SZPHRZA9NXY2DQ4AXMXE7",
+    "publishedDate": "19.07.2022",
+    "borrowDate": "14/03/2023",
+    "returnDate": "23/05/2022"
+  },
+  {
+    "ISBN": "098991833-5",
+    "title": "Little Ashes",
+    "description": "Fall from other gliding-type pedestrian conveyance",
+    "author": "Rasia Oertzen",
+    "publisher": "Blanda, Runolfsdottir and Deckow",
+    "borrowed": true,
+    "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+    "publishedDate": "16.01.2023",
+    "borrowDate": "16/11/2022",
+    "returnDate": "23/08/2022"
+  },
+  {
+    "ISBN": "101071178-4",
+    "title": "Meteor",
+    "description": "Effects of weightlessness, sequela",
+    "author": "Lyman Petican",
+    "publisher": "Schneider LLC",
+    "borrowed": true,
+    "borrowerId": "01GW3SZPHZMFW4KNMB6FQVQGC3",
+    "publishedDate": "26.08.2022",
+    "borrowDate": "27/11/2022",
+    "returnDate": "16/03/2023"
+  },
+  {
+    "ISBN": "204401855-1",
+    "title": "Lassie Come Home",
+    "description": "Prsn brd/alit pk-up/van inj pick-up truck, pk-up/van, init",
+    "author": "Ammamaria Sollett",
+    "publisher": "Oberbrunner-Feest",
+    "borrowed": false,
+    "borrowerId": "01GW3SZPJ2PH6BRAQCZKVYV9B4",
+    "publishedDate": "07.06.2022",
+    "borrowDate": "28/04/2022",
+    "returnDate": "07/11/2022"
+  },
+  {
+    "ISBN": "420229131-X",
+    "title": "Sea Is Watching, The (Umi wa miteita)",
+    "description": "Synovial hypertrophy, not elsewhere classified, unsp forearm",
+    "author": "Pepe Maher",
+    "publisher": "Bradtke, Braun and Koepp",
+    "borrowed": true,
+    "borrowerId": "01GW3SZPJ563TC0R4TQA1NT93M",
+    "publishedDate": "06.08.2022",
+    "borrowDate": "30/04/2022",
+    "returnDate": "21/07/2022"
+  },
+  {
+    "ISBN": "967703306-9",
+    "title": "Canvas",
+    "description": "Lacerat extn musc/fasc/tend r idx fngr at wrs/hnd lv, sqla",
+    "author": "Gallagher Millmore",
+    "publisher": "Willms-Muller",
+    "borrowed": true,
+    "borrowerId": "01GW3SZPJ9GPW5JMBMKWYQN9AQ",
+    "publishedDate": "22.08.2022",
+    "borrowDate": "30/01/2023",
+    "returnDate": "20/06/2022"
+  },
+  {
+    "ISBN": "017258312-8",
+    "title": "Married Couple, A",
+    "description": "Legal intervention, means unspecified, bystander injured",
+    "author": "Sandye Brightman",
+    "publisher": "Prohaska, Kuhlman and Effertz",
+    "borrowed": false,
+    "borrowerId": "01GW3SZPJDFFYAZE457VQWF74F",
+    "publishedDate": "20.07.2022",
+    "borrowDate": "05/01/2023",
+    "returnDate": "15/08/2022"
+  },
+  {
+    "ISBN": "056538321-3",
+    "title": "Torture Garden",
+    "description": "Sequelae of other nutritional deficiencies",
+    "author": "Isidor Orbine",
+    "publisher": "Miller-Walter",
+    "borrowed": true,
+    "borrowerId": "01GW3SZPJHM3VDD4VSG327YYH7",
+    "publishedDate": "24.01.2023",
+    "borrowDate": "16/09/2022",
+    "returnDate": "15/06/2022"
+  },
+  {
+    "ISBN": "218911841-7",
+    "title": "Taxidermia",
+    "description": "Intraductal carcinoma in situ of unspecified breast",
+    "author": "Orlan Balle",
+    "publisher": "Steuber-Torp",
+    "borrowed": false,
+    "borrowerId": "01GW3SZPJNH0CC7T1XE34FNS4M",
+    "publishedDate": "21.09.2022",
+    "borrowDate": "25/09/2022",
+    "returnDate": "03/03/2023"
+  }
+]

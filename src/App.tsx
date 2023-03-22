@@ -1,23 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux'
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import { decrement, increment } from './features/counter/counterSlice'
+import Login from './components/loginPage/Login'
+import MainPage from './components/mainPage/MainPage'
+import ReturnBook from './components/returnBook/ReturnBook'
+import React, { useEffect, useState } from 'react'
+import jwt_decode from 'jwt-decode'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store'
+import { addData, UserData } from './features/login/loginDataSlice'
+import GoogleData from './hook/useGoogleData'
+
+export interface loginProps {
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const [toggle, setToggle] = useState(true)
+  const person = useSelector((state: RootState) => state.userData.data)
+  console.log(toggle)
 
-  return (
-    <div className="App">
-      <h1>Vite + React + Toolkit + Tailwind</h1>
-      <div className="card">
-        <button onClick={() => dispatch(increment())}>Increment</button>
-        <span className="px-10">{count}</span>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
-      </div>
-    </div>
-  )
+  return <div className="App">{toggle ? <Login setToggle={setToggle} /> : <MainPage />}</div>
 }
 
 export default App
