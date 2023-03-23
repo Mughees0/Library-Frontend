@@ -39,7 +39,7 @@ const initialState: BooksDataState = {
 }
 
 export const fetchProductsThunk = createAsyncThunk('books/fetch', async () => {
-  const res = await fetch(`http://localhost:5174/MOCK_DATA.json`)
+  const res = await fetch(`http://localhost:5173/MOCK_DATA.json`)
   const books = await res.json()
 
   return {
@@ -63,7 +63,6 @@ export const userDataSlice = createSlice({
     builder.addCase(fetchProductsThunk.fulfilled, (state, action) => {
       state.isLoading = false
       state.data = action.payload.books
-      console.log(action.payload)
     })
   }
 })

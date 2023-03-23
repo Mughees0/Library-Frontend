@@ -15,8 +15,13 @@ const Login = ({ setToggle }: loginProps) => {
   const person = useSelector((state: RootState) => state.userData.data)
   const dispatch = useDispatch()
   const data = useGoogleData()
-  console.log('the person data', person)
   dispatch(addData(data))
+  if (person.exp > 0) {
+    setToggle(false)
+  } else {
+    setToggle(true)
+  }
+
   if (person.exp > 0) {
     setToggle(false)
   } else {

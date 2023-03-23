@@ -29,4 +29,4 @@ const Nav = () => {
   )
 }
 
-export default memo(Nav)
+export default Nav
