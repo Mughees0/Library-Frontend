@@ -25,7 +25,6 @@ const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
   const [filterAuthor, setFilterAuthor] = useState('')
   const Books = useSelector((state: RootState) => state.bookData.data)
-  const user = useSelector((state: RootState) => state.userData.data)
   const author = useSelector((state: RootState) => state.authorData.data)
   const [token, setToken] = useState('')
   const dispatch = useDispatch<AppDispatch>()

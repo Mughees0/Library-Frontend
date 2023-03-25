@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import useGoogleData from '../hooks/useGoogleLogin'
 import { fetchUser } from '../redux/slices/userSlice'
-import { AppDispatch, RootState } from '../store'
+import { AppDispatch } from '../store'
 
 const Login = () => {
-  const user = useSelector((state: RootState) => state.userData.data)
   const dispatch = useDispatch<AppDispatch>()
   const google = useGoogleData()
   const [token, setToken] = useState('')
