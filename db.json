@@ -82,7 +82,7 @@
   "User": [
     {
       "iss": "https://accounts.google.com",
-      "nbf": 1679757341,
+      "nbf": 1679761875,
       "aud": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
       "sub": "104493945549628020082",
       "email": "abdul.mughees@integrify.io",
@@ -92,32 +92,24 @@
       "picture": "https://lh3.googleusercontent.com/a/AGNmyxYEwvbCnlV4vsQxBxEfnkv1tkcIC1Wii-7TRmX_=s96-c",
       "given_name": "Abdul",
       "family_name": "Mughees",
-      "iat": 1679757641,
-      "exp": 1679761241,
-      "jti": "4f07ff70e7eb86fd22d75c6260d88a570da70ad2",
+      "iat": 1679762175,
+      "exp": 1679765775,
+      "jti": "8f502230188418b50698b1fbda4f44fb674dfe9c",
       "id": 0
     }
   ],
   "Author": [
     {
-      "id": 1,
-      "name": "John"
-    },
-    {
-      "id": 2,
-      "name": "Mughees"
-    },
-    {
-      "id": 3,
-      "name": "Mughees"
-    },
-    {
-      "id": 4,
-      "name": "Mughees"
+      "name": "John",
+      "id": 3
     },
     {
       "id": 5,
       "name": "Mughees"
+    },
+    {
+      "id": 6,
+      "name": "Saba"
     }
   ]
 }

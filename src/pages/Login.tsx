@@ -1,30 +1,36 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import useGoogleData from "../hooks/useGoogleLogin";
-import { clearUser, updateUser } from "../redux/slices/userSlice";
-import { AppDispatch, RootState } from "../store";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import useGoogleData from '../hooks/useGoogleLogin'
+import { fetchUser } from '../redux/slices/userSlice'
+import { AppDispatch, RootState } from '../store'
 
 const Login = () => {
-  const user = useSelector((state: RootState) => state.userData.data);
-  const dispatch = useDispatch<AppDispatch>();
-  const google = useGoogleData();
+  const user = useSelector((state: RootState) => state.userData.data)
+  const dispatch = useDispatch<AppDispatch>()
+  const google = useGoogleData()
+  const [token, setToken] = useState('')
+  const navigate = useNavigate()
 
-  console.log(user);
+  useEffect(() => {
+    dispatch(fetchUser())
+    const items = localStorage.getItem('token')
+    if (items) {
+      setToken(items)
+    }
+  }, [token])
 
   return (
     <>
-      {user[0].family_name === "" ? (
+      {!token ? (
         <div className="bg-yellow flex justify-center items-center h-screen w-screen">
           <button id="signIn"></button>
         </div>
       ) : (
-        <div className="bg-yellow flex justify-center items-center h-screen w-screen">
-          <a href="/library"></a>
-        </div>
+        <>{navigate('/')}</>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

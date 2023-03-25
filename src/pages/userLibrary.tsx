@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from "../components/Navbar";
-import useGoogleData from "../hooks/useGoogleLogin";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import {
-  addAuthor,
-  deleteAuthor,
-  fetchAuthor,
-  updateAuthor,
-} from "../redux/slices/authorSlice";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Navbar from '../components/Navbar'
+import useGoogleData from '../hooks/useGoogleLogin'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { addAuthor, deleteAuthor, fetchAuthor, updateAuthor } from '../redux/slices/authorSlice'
 import {
   updateBook,
   fetchBooks,
@@ -18,45 +13,45 @@ import {
   filterBookByName,
   filterBookByAuthor,
   borrowBook,
-  returnBook,
-} from "../redux/slices/bookSlice";
-import { clearUser, fetchUser } from "../redux/slices/userSlice";
-import { RootState, AppDispatch } from "../store";
-import { Author, Book } from "../types";
-import lib from "../assets/lib.jpg";
-import { Toast } from "react-toastify/dist/components";
+  returnBook
+} from '../redux/slices/bookSlice'
+import { clearUser, fetchUser } from '../redux/slices/userSlice'
+import { RootState, AppDispatch } from '../store'
+import { Author, Book } from '../types'
+import lib from '../assets/lib.jpg'
+import { Toast } from 'react-toastify/dist/components'
 
 const userLibrary = () => {
-  const [filterText, setFilterText] = useState("");
-  const [filterAuthor, setFilterAuthor] = useState("");
-  const Books = useSelector((state: RootState) => state.bookData.data);
-  const user = useSelector((state: RootState) => state.userData.data);
-  const author = useSelector((state: RootState) => state.authorData.data);
-  const [token, setToken] = useState("");
-  const dispatch = useDispatch<AppDispatch>();
+  const [filterText, setFilterText] = useState('')
+  const [filterAuthor, setFilterAuthor] = useState('')
+  const Books = useSelector((state: RootState) => state.bookData.data)
+  const user = useSelector((state: RootState) => state.userData.data)
+  const author = useSelector((state: RootState) => state.authorData.data)
+  const [token, setToken] = useState('')
+  const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
-    dispatch(fetchBooks());
-    dispatch(fetchUser());
-    const items = localStorage.getItem("token");
+    dispatch(fetchBooks())
+    dispatch(fetchUser())
+    const items = localStorage.getItem('token')
     if (items) {
-      setToken(items);
+      setToken(items)
     }
-  }, []);
+  }, [])
 
   function handleBorrow(book: Book): void {
-    dispatch(borrowBook(book));
-    toast("Borrowed! Please Check the Return Date");
+    dispatch(borrowBook(book))
+    toast('Borrowed! Please Check the Return Date')
     setTimeout(() => {
-      location.reload();
-    }, 2000);
+      location.reload()
+    }, 2000)
   }
   function handleReturn(book: Book): void {
-    dispatch(returnBook(book));
-    toast("The book is returned successfully!");
+    dispatch(returnBook(book))
+    toast('The book is returned successfully!')
     setTimeout(() => {
-      location.reload();
-    }, 2000);
+      location.reload()
+    }, 2000)
   }
 
   return (
@@ -65,8 +60,7 @@ const userLibrary = () => {
       <header className="outline bg-cover flex justify-center items-center bg-[url('/src/assets/lib.jpg')] h-52">
         <label
           htmlFor="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-        >
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
         </label>
         <div className="relative w-80 ">
@@ -77,14 +71,12 @@ const userLibrary = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </div>
           <input
@@ -97,10 +89,9 @@ const userLibrary = () => {
           />
           <button
             onClick={() => {
-              dispatch(filterBookByName(filterText));
+              dispatch(filterBookByName(filterText))
             }}
-            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
+            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Search
           </button>
         </div>
@@ -116,10 +107,7 @@ const userLibrary = () => {
             <tbody className=" my-2 flex flex-col py-2 ">
               {Books.map((book) => {
                 return (
-                  <tr
-                    className="outline py-2 flex flex-col px-9  items-start"
-                    key={book.id}
-                  >
+                  <tr className="outline py-2 flex flex-col px-9  items-start" key={book.id}>
                     <td className="text-2xl text-yellow-300">{book.title}</td>
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
@@ -135,8 +123,7 @@ const userLibrary = () => {
                             <>
                               <button
                                 onClick={() => handleBorrow(book)}
-                                className="bg-green-300 rounded-full px-4 my-3"
-                              >
+                                className="bg-green-300 rounded-full px-4 my-3">
                                 Borrow
                               </button>
                               <ToastContainer
@@ -159,8 +146,7 @@ const userLibrary = () => {
                             <>
                               <button
                                 onClick={() => handleReturn(book)}
-                                className="bg-green-300 rounded-full px-4 my-3"
-                              >
+                                className="bg-green-300 rounded-full px-4 my-3">
                                 Return this book
                               </button>
                               <ToastContainer
@@ -185,7 +171,7 @@ const userLibrary = () => {
                       <></>
                     )}
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -194,8 +180,7 @@ const userLibrary = () => {
           <div className="flex flex-col items-center">
             <label
               htmlFor="small-input"
-              className="block my-2 text-sm font-medium text-gray-900 dark:text-black"
-            >
+              className="block my-2 text-sm font-medium text-gray-900 dark:text-black">
               Filter with author
             </label>
             <input
@@ -204,14 +189,12 @@ const userLibrary = () => {
               onChange={(e) => setFilterAuthor(e.target.value)}
               className="block w-2/5 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-            <button onClick={() => dispatch(filterBookByAuthor(filterAuthor))}>
-              Search
-            </button>
+            <button onClick={() => dispatch(filterBookByAuthor(filterAuthor))}>Search</button>
           </div>
         </section>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default userLibrary;
+export default userLibrary

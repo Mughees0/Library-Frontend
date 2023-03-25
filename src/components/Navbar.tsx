@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { clearUser, fetchUser } from "../redux/slices/userSlice";
-import { AppDispatch, RootState } from "../store";
-import logo from "../assets/logo.jpg";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { clearUser, fetchUser } from '../redux/slices/userSlice'
+import { AppDispatch, RootState } from '../store'
+import logo from '../assets/logo.jpg'
 
 const Navbar = () => {
-  const user = useSelector((state: RootState) => state.userData.data);
-  const dispatch = useDispatch<AppDispatch>();
-  const [token, setToken] = useState("");
-  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.userData.data)
+  const dispatch = useDispatch<AppDispatch>()
+  const [token, setToken] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(fetchUser());
-    const items = localStorage.getItem("token");
+    dispatch(fetchUser())
+    const items = localStorage.getItem('token')
     if (items) {
-      setToken(items);
+      setToken(items)
     }
-  }, [user, token]);
+  }, [user, token])
 
   return (
     <nav className="h-12">
@@ -35,18 +35,17 @@ const Navbar = () => {
             <button
               id="signOut"
               onClick={() => {
-                dispatch(clearUser());
-                localStorage.clear();
-                navigate("/login");
-              }}
-            >
+                dispatch(clearUser())
+                localStorage.clear()
+                navigate('/login')
+              }}>
               Sign Out
             </button>
           )}
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
