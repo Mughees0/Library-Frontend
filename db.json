@@ -1,0 +1,123 @@
+{
+  "Books": [
+    {
+      "ISBN": "098991833-5",
+      "title": "Little Ashes",
+      "description": "I am mughees",
+      "author": "Arthur",
+      "publisher": "Arthur",
+      "borrowed": true,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 1
+    },
+    {
+      "ISBN": "098991833-5",
+      "title": "Kids fantasy",
+      "description": "I am mughees",
+      "author": "Rasia Oertzen",
+      "publisher": "Mughees",
+      "borrowed": false,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 2
+    },
+    {
+      "ISBN": "098991833-5",
+      "title": "Jump Around",
+      "description": "I am mughees",
+      "author": "Rasia chachu",
+      "publisher": "Mughees",
+      "borrowed": true,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 3
+    },
+    {
+      "ISBN": "098991833-5",
+      "title": "Ashes",
+      "description": "I am mughees",
+      "author": "Mughees",
+      "publisher": "Mughees",
+      "borrowed": false,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 4
+    },
+    {
+      "ISBN": "098991833-5",
+      "title": "Hot Boy",
+      "description": "I am mughees",
+      "author": "Rasia Oertzen",
+      "publisher": "Mughees",
+      "borrowed": false,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "ISBN": "098991833-5",
+      "title": "Kids fantasy",
+      "description": "I am mughees",
+      "author": "helo try",
+      "publisher": "Mughees",
+      "borrowed": true,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022"
+    }
+  ],
+  "User": [
+    {
+      "iss": "https://accounts.google.com",
+      "nbf": 1679757341,
+      "aud": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
+      "sub": "104493945549628020082",
+      "email": "abdul.mughees@integrify.io",
+      "email_verified": true,
+      "azp": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
+      "name": "Abdul Mughees",
+      "picture": "https://lh3.googleusercontent.com/a/AGNmyxYEwvbCnlV4vsQxBxEfnkv1tkcIC1Wii-7TRmX_=s96-c",
+      "given_name": "Abdul",
+      "family_name": "Mughees",
+      "iat": 1679757641,
+      "exp": 1679761241,
+      "jti": "4f07ff70e7eb86fd22d75c6260d88a570da70ad2",
+      "id": 0
+    }
+  ],
+  "Author": [
+    {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "Mughees"
+    },
+    {
+      "id": 3,
+      "name": "Mughees"
+    },
+    {
+      "id": 4,
+      "name": "Mughees"
+    },
+    {
+      "id": 5,
+      "name": "Mughees"
+    }
+  ]
+}
