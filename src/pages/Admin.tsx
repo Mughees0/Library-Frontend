@@ -66,7 +66,7 @@ const Admin = () => {
 
   function handleDelete(id: number): void {
     dispatch(deleteBook(id))
-    toast('Successfully Deleted!')
+    toast.success('Successfully Deleted!')
     setTimeout(() => {
       location.reload()
     }, 2000)
@@ -90,13 +90,13 @@ const Admin = () => {
     e.preventDefault()
     if (btnText === 'ADD') {
       dispatch(addBook(bookInput))
-      toast('Successfully Added!')
+      toast.success('Successfully Added!')
       setTimeout(() => {
         location.reload()
       }, 2000)
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
-      toast('Successfully Update!')
+      toast.success('Successfully Update!')
       setTimeout(() => {
         location.reload()
       }, 2000)
@@ -122,7 +122,7 @@ const Admin = () => {
 
   function handleAuthorDelete(id: number) {
     dispatch(deleteAuthor(id))
-    toast('Successfully Deleted!')
+    toast.success('Successfully Deleted!')
     setTimeout(() => {
       location.reload()
     }, 2000)
@@ -137,13 +137,13 @@ const Admin = () => {
     e.preventDefault()
     if (authorBtnText === 'UPDATE') {
       dispatch(updateAuthor(authorItem))
-      toast('Successfully Update!')
+      toast.success('Successfully Update!')
       setTimeout(() => {
         location.reload()
       }, 2000)
     } else if (authorBtnText === 'ADD') {
       dispatch(addAuthor(authorItem))
-      toast('Successfully Added!')
+      toast.success('Successfully Added!')
       setTimeout(() => {
         location.reload()
       }, 2000)
@@ -156,8 +156,8 @@ const Admin = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col gap-9 items-center h-screen justify-around">
-        <section className="outline bg-green-200 w-screen flex flex-col gap-20 justify-between">
+      <div className="flex flex-col gap-9 items-centerjustify-around">
+        <section className="outline bg-yellow-300 w-screen flex flex-col gap-20 justify-between">
           {modalTable ? (
             <form
               onSubmit={(e) => handleSubmit(e)}
@@ -198,6 +198,7 @@ const Admin = () => {
                         value={isbn}
                         id="isbn"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -209,6 +210,7 @@ const Admin = () => {
                         value={title}
                         id="title"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -220,6 +222,7 @@ const Admin = () => {
                         value={description}
                         id="discription"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -231,6 +234,7 @@ const Admin = () => {
                         value={bookAuthor}
                         id="author"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -243,6 +247,7 @@ const Admin = () => {
                         value={publisher}
                         id="publisher"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -280,6 +285,7 @@ const Admin = () => {
                         value={publishedDate}
                         id="publishedDate"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -343,12 +349,12 @@ const Admin = () => {
               {Books.map((book) => {
                 return (
                   <tr
-                    className="outline flex flex-col px-9 gap-1 items-start py-4 my-3"
+                    className="outline flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
                     key={book.id}>
                     <td className="text-2xl text-black ">{book.title}</td>
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
-                    <td>{book.description}</td>
+                    <td className="outline">{book.description}</td>
                     <td>
                       <button
                         className="rounded-full bg-green-500 px-4"
@@ -361,7 +367,7 @@ const Admin = () => {
                       <ToastContainer
                         position="top-right"
                         autoClose={5000}
-                        hideProgressBar
+                        hideProgressBar={true}
                         newestOnTop={false}
                         closeOnClick
                         rtl={false}
@@ -385,7 +391,7 @@ const Admin = () => {
                           handleAdd(book)
                           setModalTable(!modalTable)
                         }}>
-                        Add to feild
+                        Copy book data
                       </button>
                     </td>
                   </tr>
@@ -395,7 +401,7 @@ const Admin = () => {
           </table>
         </section>
         {/* Author form */}
-        <section className=" bg-green-200 w-screen flex flex-col justify-between">
+        <section className=" bg-yellow-300 w-screen flex flex-col justify-between">
           {authorModalTable ? (
             <form
               className="outline flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-36 w-96 shadow-3xl"
@@ -403,7 +409,7 @@ const Admin = () => {
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
-                hideProgressBar
+                hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}
@@ -436,6 +442,7 @@ const Admin = () => {
                         value={authorName}
                         id="authorName"
                         type="text"
+                        required
                       />
                     </td>
                   </tr>
@@ -491,7 +498,7 @@ const Admin = () => {
                       <ToastContainer
                         position="top-right"
                         autoClose={5000}
-                        hideProgressBar
+                        hideProgressBar={false}
                         newestOnTop={false}
                         closeOnClick
                         rtl={false}
@@ -515,7 +522,7 @@ const Admin = () => {
                           handleAuthorAdd(author)
                           setAuthorModalTable(!authorModalTable)
                         }}>
-                        Add to feild
+                        Copy author data
                       </button>
                     </td>
                   </tr>
@@ -525,7 +532,6 @@ const Admin = () => {
           </table>
         </section>
       </div>
-      <Footer />
     </>
   )
 }

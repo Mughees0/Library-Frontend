@@ -9,13 +9,13 @@
       "borrowed": true,
       "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
       "publishedDate": "16.01.2023",
-      "borrowDate": "16/11/2022",
-      "returnDate": "23/08/2022",
+      "borrowDate": "26/03/2023",
+      "returnDate": "26/04/2023",
       "id": 1
     },
     {
       "ISBN": "098991833-5",
-      "title": "Kids fantasy",
+      "title": "Kid Stories",
       "description": "I am mughees",
       "author": "Rasia Oertzen",
       "publisher": "Mughees",
@@ -28,37 +28,11 @@
     },
     {
       "ISBN": "098991833-5",
-      "title": "Jump Around",
-      "description": "I am mughees",
-      "author": "Rasia chachu",
-      "publisher": "Mughees",
-      "borrowed": true,
-      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
-      "publishedDate": "16.01.2023",
-      "borrowDate": "16/11/2022",
-      "returnDate": "23/08/2022",
-      "id": 3
-    },
-    {
-      "ISBN": "098991833-5",
-      "title": "Ashes",
-      "description": "I am mughees",
-      "author": "Mughees",
-      "publisher": "Mughees",
-      "borrowed": false,
-      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
-      "publishedDate": "16.01.2023",
-      "borrowDate": "16/11/2022",
-      "returnDate": "23/08/2022",
-      "id": 4
-    },
-    {
-      "ISBN": "098991833-5",
-      "title": "Hot Boy",
-      "description": "I am mughees",
+      "title": "The Boy",
+      "description": "The story of a young boy living in a small city.",
       "author": "Rasia Oertzen",
       "publisher": "Mughees",
-      "borrowed": false,
+      "borrowed": true,
       "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
       "publishedDate": "16.01.2023",
       "borrowDate": "16/11/2022",
@@ -66,11 +40,63 @@
       "id": 5
     },
     {
-      "id": 6,
       "ISBN": "098991833-5",
       "title": "Kids fantasy",
       "description": "I am mughees",
       "author": "helo try",
+      "publisher": "Mughees",
+      "borrowed": true,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "function getDate() { [native code] }",
+      "returnDate": "23/08/2022",
+      "id": 6
+    },
+    {
+      "ISBN": "098991833-6",
+      "title": "Kid Stories",
+      "description": "ykkone",
+      "author": "Saba Saif",
+      "publisher": "Saba",
+      "borrowed": true,
+      "borrowerId": "",
+      "publishedDate": "17.01.2023",
+      "borrowDate": "Sun Mar 26 2023 17:16:48 GMT+0300 (Eastern European Summer Time)",
+      "returnDate": "",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "ISBN": "098991833-6",
+      "title": "Kid Stories",
+      "description": "ykkone",
+      "author": "Saba Saif",
+      "publisher": "Saba",
+      "borrowed": true,
+      "borrowerId": "",
+      "publishedDate": "17.01.2023",
+      "borrowDate": "",
+      "returnDate": ""
+    },
+    {
+      "ISBN": "098991833-5",
+      "title": "Jump Around",
+      "description": "I am mughees",
+      "author": "Rasia chachu",
+      "publisher": "Mughees",
+      "borrowed": false,
+      "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
+      "publishedDate": "16.01.2023",
+      "borrowDate": "16/11/2022",
+      "returnDate": "23/08/2022",
+      "id": 10
+    },
+    {
+      "id": 11,
+      "ISBN": "098991833-5",
+      "title": "Jump Around",
+      "description": "I am mughees",
+      "author": "Rasia chachu",
       "publisher": "Mughees",
       "borrowed": true,
       "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
@@ -82,19 +108,19 @@
   "User": [
     {
       "iss": "https://accounts.google.com",
-      "nbf": 1679810604,
+      "nbf": 1679846802,
       "aud": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
-      "sub": "104493945549628020082",
-      "email": "abdul.mughees@integrify.io",
+      "sub": "111009818611185192733",
+      "email": "abdul.mughees009@gmail.com",
       "email_verified": true,
       "azp": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
       "name": "Abdul Mughees",
-      "picture": "https://lh3.googleusercontent.com/a/AGNmyxYEwvbCnlV4vsQxBxEfnkv1tkcIC1Wii-7TRmX_=s96-c",
+      "picture": "https://lh3.googleusercontent.com/a/AGNmyxZi_GG5BOSFAeym0iW9C-LWbQQphIWX_C1nmD7u=s96-c",
       "given_name": "Abdul",
       "family_name": "Mughees",
-      "iat": 1679810904,
-      "exp": 1679814504,
-      "jti": "6478d37f730e8923c608fa453755ae4f6f38bcae",
+      "iat": 1679847102,
+      "exp": 1679850702,
+      "jti": "1e0742849a9a7396bde26643a9892708bc303c8a",
       "id": 0
     }
   ],
@@ -122,6 +148,10 @@
     {
       "name": "Suleman",
       "id": 12
+    },
+    {
+      "id": 15,
+      "name": "Harry"
     }
   ]
 }

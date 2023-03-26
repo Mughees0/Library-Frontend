@@ -98,5 +98,5 @@ export const userDataSlice = createSlice({
     })
   }
 })
-export const {} = userDataSlice.actions
+
 export default userDataSlice.reducer

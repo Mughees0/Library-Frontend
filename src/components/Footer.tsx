@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="outline h-10 w-screen flex justify-between items-center">
+    <footer className="outline h-10 w-screen flex justify-between items-center ">
       <span>&copy; Mughees</span>
       <ul>
         <li>

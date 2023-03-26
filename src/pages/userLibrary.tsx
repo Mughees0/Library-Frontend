@@ -5,6 +5,7 @@ import useGoogleData from '../hooks/useGoogleLogin'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { addAuthor, deleteAuthor, fetchAuthor, updateAuthor } from '../redux/slices/authorSlice'
+import cover from '../assets/cover.png'
 import {
   updateBook,
   fetchBooks,
@@ -34,6 +35,7 @@ const userLibrary = () => {
     dispatch(fetchBooks())
     dispatch(fetchUser())
     dispatch(fetchAuthor())
+
     const items = localStorage.getItem('token')
     if (items) {
       setToken(items)
@@ -42,14 +44,14 @@ const userLibrary = () => {
 
   function handleBorrow(book: Book): void {
     dispatch(borrowBook(book))
-    toast('Borrowed! Please Check the Return Date')
+    toast.success('Borrowed! Please Check the Return Date')
     setTimeout(() => {
       location.reload()
     }, 2000)
   }
   function handleReturn(book: Book): void {
     dispatch(returnBook(book))
-    toast('The book is returned successfully!')
+    toast.success('The book is returned successfully!')
     setTimeout(() => {
       location.reload()
     }, 2000)
@@ -97,102 +99,117 @@ const userLibrary = () => {
           </button>
         </div>
       </header>
-      <main className="flex items-start w-screen ">
-        <section className=" bg-yellow-800 w-4/5 mt-12 ml-12 flex flex-col items-center">
-          <table className="w-4/5">
-            <thead className="text-3xl underline  text-orange-300">
+      <main className="flex items-start w-screen justify-center flex-wrap-reverse sm:flex-nowrap">
+        <section className=" bg-gray-200 w-5/6 py-3 my-12 mx-12 flex flex-col items-center">
+          <table className="w-4/5 ">
+            <thead className="text-3xl underline  text-black">
               <tr className="">
-                <td>Books</td>
+                <td>
+                  <h2>Books</h2>
+                </td>
               </tr>
             </thead>
             <tbody className=" my-2 flex flex-col py-2 ">
               {Books.map((book) => {
                 return (
-                  <tr className="outline py-2 flex flex-col px-9  items-start" key={book.id}>
-                    <td className="text-2xl text-yellow-300">{book.title}</td>
-                    <td>{book.author}</td>
-                    <td>{book.publishedDate}</td>
-                    <td>{book.description}</td>
-                    {token ? (
-                      <>
-                        <td>
-                          {book.borrowed ? (
-                            <p className="text-red-500 text-lg">
-                              Not Available, Return Date: {book.returnDate}
-                            </p>
-                          ) : (
-                            <>
-                              <button
-                                onClick={() => handleBorrow(book)}
-                                className="bg-green-300 rounded-full px-4 my-3">
-                                Borrow
-                              </button>
-                              <ToastContainer
-                                position="bottom-center"
-                                autoClose={1000}
-                                hideProgressBar={true}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
-                              />
-                            </>
-                          )}
-                        </td>
-                        <td>
-                          {book.borrowed ? (
-                            <>
-                              <button
-                                onClick={() => handleReturn(book)}
-                                className="bg-green-300 rounded-full px-4 my-3">
-                                Return this book
-                              </button>
-                              <ToastContainer
-                                position="bottom-center"
-                                autoClose={1000}
-                                hideProgressBar={true}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
-                              />
-                            </>
-                          ) : (
-                            <></>
-                          )}
-                        </td>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                  <tr
+                    className="outline py-2 my-2 flex flex-wrap px-9 gap-3 items-center hover:bg-gray-300 hover:shadow-2xl hover:transition-all"
+                    key={book.id}>
+                    <td className="w-36">
+                      <img src={cover} alt="Book Cover" />
+                    </td>
+                    <td className=" gap-1 flex flex-col px-9  items-start">
+                      <h2 className="text-3xl text-custom-blue font-heading">{book.title}</h2>
+                      <p>{book.author}</p>
+                      <p>{book.publishedDate}</p>
+                      <p>{book.description}</p>
+                      {token ? (
+                        <>
+                          <div>
+                            {book.borrowed ? (
+                              <p className="text-custom-orange text-lg">
+                                Not Available, Return Date: {book.returnDate}
+                              </p>
+                            ) : (
+                              <>
+                                <button
+                                  onClick={() => handleBorrow(book)}
+                                  className="bg-custom-greenish rounded-full px-4 my-3">
+                                  Borrow
+                                </button>
+                                <ToastContainer
+                                  position="bottom-center"
+                                  autoClose={1000}
+                                  hideProgressBar={true}
+                                  newestOnTop={false}
+                                  closeOnClick
+                                  rtl={false}
+                                  pauseOnFocusLoss
+                                  draggable
+                                  pauseOnHover
+                                  theme="light"
+                                />
+                              </>
+                            )}
+                          </div>
+                          <div>
+                            {book.borrowed ? (
+                              <>
+                                <button
+                                  onClick={() => handleReturn(book)}
+                                  className="bg-custom-greenish rounded-full px-4 my-3">
+                                  Return
+                                </button>
+                                <ToastContainer
+                                  position="bottom-center"
+                                  autoClose={1000}
+                                  hideProgressBar={true}
+                                  newestOnTop={false}
+                                  closeOnClick
+                                  rtl={false}
+                                  pauseOnFocusLoss
+                                  draggable
+                                  pauseOnHover
+                                  theme="light"
+                                />
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
         </section>
-        <section className=" h-full w-2/6 mt-12 flex flex-col items-center">
-          <div className="flex flex-col items-center">
+        <section className=" h-full w-1/6 mt-12 py-12 flex flex-col items-center">
+          <div className="flex flex-col items-center w-44">
             <label
               htmlFor="small-input"
-              className="block my-2 text-sm font-medium text-gray-900 dark:text-black">
+              className="block my-2 text-lg  font-medium text-gray-900 dark:text-black">
               Filter with author
             </label>
-            <input
-              type="text"
-              id="small-input"
-              onChange={(e) => setFilterAuthor(e.target.value)}
-              className="block w-36 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-            <button onClick={() => dispatch(filterBookByAuthor(filterAuthor))}>Search</button>
+            <div className="">
+              <input
+                type="text"
+                id="small-input"
+                onChange={(e) => setFilterAuthor(e.target.value)}
+                className="block p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+              <button
+                className="rounded-full px-3 mt-2 bg-custom-greenish hover:bg-green-600"
+                onClick={() => dispatch(filterBookByAuthor(filterAuthor))}>
+                Search
+              </button>
+            </div>
           </div>
-          <ul className="px-5 flex flex-col items-start w-40">
+          <ul className="px-5 flex flex-col items-start w-46">
             <li className="text-lg py-3">List of authors:</li>
             {Authors.map((author) => (
               <li className="pb-1" key={author.id}>
@@ -202,7 +219,6 @@ const userLibrary = () => {
           </ul>
         </section>
       </main>
-      <Footer />
     </>
   )
 }
