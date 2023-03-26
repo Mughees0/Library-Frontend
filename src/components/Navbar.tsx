@@ -20,10 +20,10 @@ const Navbar = () => {
   }, [user, token])
 
   return (
-    <nav className="h-12">
+    <nav className="h-12 outline">
       <ul className="flex justify-between items-center ">
         <li className="flex items-center justify-between w-32">
-          <img className="h-12 " src={logo} /> e-Books
+          <img className="h-12 pl-4" src={logo} /> e-Books
         </li>
         <li>
           <a href="/"></a>
@@ -32,15 +32,18 @@ const Navbar = () => {
           {!token ? (
             <a href="/login">Login</a>
           ) : (
-            <button
-              id="signOut"
-              onClick={() => {
-                dispatch(clearUser())
-                localStorage.clear()
-                navigate('/login')
-              }}>
-              Sign Out
-            </button>
+            <div className="flex w-[6.5rem] justify-between">
+              <img className="h-8 rounded-full" src={user[0].picture} alt="Profile Picture" />
+              <button
+                id="signOut"
+                onClick={() => {
+                  dispatch(clearUser())
+                  localStorage.clear()
+                  navigate('/login')
+                }}>
+                Sign Out
+              </button>
+            </div>
           )}
         </li>
       </ul>

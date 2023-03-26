@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Footer from '../components/Footer'
 import useGoogleData from '../hooks/useGoogleLogin'
 import { fetchUser } from '../redux/slices/userSlice'
 import { AppDispatch } from '../store'
@@ -28,6 +29,7 @@ const Login = () => {
       ) : (
         <>{navigate('/')}</>
       )}
+      <Footer />
     </>
   )
 }

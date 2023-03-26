@@ -20,18 +20,20 @@ import { RootState, AppDispatch } from '../store'
 import { Author, Book } from '../types'
 import lib from '../assets/lib.jpg'
 import { Toast } from 'react-toastify/dist/components'
+import Footer from '../components/Footer'
 
 const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
   const [filterAuthor, setFilterAuthor] = useState('')
   const Books = useSelector((state: RootState) => state.bookData.data)
-  const author = useSelector((state: RootState) => state.authorData.data)
+  const Authors = useSelector((state: RootState) => state.authorData.data)
   const [token, setToken] = useState('')
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     dispatch(fetchBooks())
     dispatch(fetchUser())
+    dispatch(fetchAuthor())
     const items = localStorage.getItem('token')
     if (items) {
       setToken(items)
@@ -97,7 +99,7 @@ const userLibrary = () => {
       </header>
       <main className="flex items-start w-screen ">
         <section className=" bg-yellow-800 w-4/5 mt-12 ml-12 flex flex-col items-center">
-          <table className="w-4/5  ">
+          <table className="w-4/5">
             <thead className="text-3xl underline  text-orange-300">
               <tr className="">
                 <td>Books</td>
@@ -175,7 +177,7 @@ const userLibrary = () => {
             </tbody>
           </table>
         </section>
-        <section className=" h-full w-2/6 mt-12 ">
+        <section className=" h-full w-2/6 mt-12 flex flex-col items-center">
           <div className="flex flex-col items-center">
             <label
               htmlFor="small-input"
@@ -186,12 +188,21 @@ const userLibrary = () => {
               type="text"
               id="small-input"
               onChange={(e) => setFilterAuthor(e.target.value)}
-              className="block w-2/5 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-36 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
             <button onClick={() => dispatch(filterBookByAuthor(filterAuthor))}>Search</button>
           </div>
+          <ul className="px-5 flex flex-col items-start w-40">
+            <li className="text-lg py-3">List of authors:</li>
+            {Authors.map((author) => (
+              <li className="pb-1" key={author.id}>
+                {author.name}
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
+      <Footer />
     </>
   )
 }
