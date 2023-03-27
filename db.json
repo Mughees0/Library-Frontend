@@ -6,7 +6,7 @@
       "description": "I am mughees",
       "author": "Arthur",
       "publisher": "Arthur",
-      "borrowed": true,
+      "borrowed": false,
       "borrowerId": "01GW3SZPHWXYGDQA24KGJ2R20J",
       "publishedDate": "16.01.2023",
       "borrowDate": "26/03/2023",
@@ -103,25 +103,6 @@
       "publishedDate": "16.01.2023",
       "borrowDate": "16/11/2022",
       "returnDate": "23/08/2022"
-    }
-  ],
-  "User": [
-    {
-      "iss": "https://accounts.google.com",
-      "nbf": 1679846802,
-      "aud": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
-      "sub": "111009818611185192733",
-      "email": "abdul.mughees009@gmail.com",
-      "email_verified": true,
-      "azp": "1096442355869-9ukv8bd315n3sa8lm8jast2tr33ukig7.apps.googleusercontent.com",
-      "name": "Abdul Mughees",
-      "picture": "https://lh3.googleusercontent.com/a/AGNmyxZi_GG5BOSFAeym0iW9C-LWbQQphIWX_C1nmD7u=s96-c",
-      "given_name": "Abdul",
-      "family_name": "Mughees",
-      "iat": 1679847102,
-      "exp": 1679850702,
-      "jti": "1e0742849a9a7396bde26643a9892708bc303c8a",
-      "id": 0
     }
   ],
   "Author": [

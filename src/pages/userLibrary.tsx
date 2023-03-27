@@ -1,60 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../components/Navbar'
-import useGoogleData from '../hooks/useGoogleLogin'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { addAuthor, deleteAuthor, fetchAuthor, updateAuthor } from '../redux/slices/authorSlice'
+import { fetchAuthor } from '../redux/slices/authorSlice'
 import cover from '../assets/cover.png'
 import {
-  updateBook,
   fetchBooks,
-  addBook,
-  deleteBook,
   filterBookByName,
   filterBookByAuthor,
   borrowBook,
   returnBook
 } from '../redux/slices/bookSlice'
-import { clearUser, fetchUser } from '../redux/slices/userSlice'
 import { RootState, AppDispatch } from '../store'
-import { Author, Book } from '../types'
-import lib from '../assets/lib.jpg'
-import { Toast } from 'react-toastify/dist/components'
-import Footer from '../components/Footer'
+import { Book } from '../types'
+import useGoogleData from '../hooks/useGoogleData'
 
 const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
   const [filterAuthor, setFilterAuthor] = useState('')
   const Books = useSelector((state: RootState) => state.bookData.data)
   const Authors = useSelector((state: RootState) => state.authorData.data)
-  const [token, setToken] = useState('')
+  const [user, token] = useGoogleData()
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
     dispatch(fetchBooks())
-    dispatch(fetchUser())
     dispatch(fetchAuthor())
-
-    const items = localStorage.getItem('token')
-    if (items) {
-      setToken(items)
-    }
-  }, [])
+  }, [filterText, filterAuthor])
 
   function handleBorrow(book: Book): void {
     dispatch(borrowBook(book))
     toast.success('Borrowed! Please Check the Return Date')
-    setTimeout(() => {
-      location.reload()
-    }, 2000)
   }
   function handleReturn(book: Book): void {
     dispatch(returnBook(book))
     toast.success('The book is returned successfully!')
-    setTimeout(() => {
-      location.reload()
-    }, 2000)
   }
 
   return (

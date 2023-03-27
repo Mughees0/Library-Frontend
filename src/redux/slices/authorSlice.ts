@@ -1,20 +1,15 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Author, AuthorState, Book, BookState } from '../../types'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { Author, AuthorState } from '../../types'
 
 const initialState: AuthorState = {
   isLoading: false,
   error: null,
   msg: '',
-  data: [
-    {
-      id: 0,
-      name: 'Start'
-    }
-  ]
+  data: []
 }
 
 export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
-  const res = await fetch(`http://localhost:8080/Author`)
+  const res = await fetch(`http://localhost:5173/db.json`)
   const authors: Author[] = await res.json()
   return {
     authors,
@@ -23,45 +18,19 @@ export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
 })
 
 export const updateAuthor = createAsyncThunk('author/update', async (object: Author) => {
-  const res = await fetch('http://localhost:8080/Author/' + object.id, {
-    method: 'PUT',
-    body: JSON.stringify({
-      name: object.name
-    }),
-    headers: {
-      'Content-type': 'application/json'
-    }
-  })
-  const msg = await res.json()
   return {
-    msg: 'Updated'
+    object
   }
 })
 export const addAuthor = createAsyncThunk('author/add', async (object: Author) => {
-  const res = await fetch('http://localhost:8080/Author/', {
-    method: 'POST',
-    body: JSON.stringify({
-      id: object.id,
-      name: object.name
-    }),
-    headers: {
-      'Content-type': 'application/json'
-    }
-  })
-  const msg = await res.json()
   return {
-    msg: 'Author Added'
+    object
   }
 })
 
 export const deleteAuthor = createAsyncThunk('author/delete', async (id: number) => {
-  const res = await fetch(`http://localhost:8080/Author/` + id, {
-    method: 'DELETE'
-  })
-  const msg = await res.json()
-  console.log(msg)
   return {
-    msg: 'deleted'
+    id
   }
 })
 
@@ -80,21 +49,38 @@ export const userDataSlice = createSlice({
     })
     builder.addCase(fetchAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      state.data = action.payload.authors
+      state.data = action.payload.authors.Author
     })
     // updating data
-    builder.addCase(updateAuthor.fulfilled, (state) => {
+    builder.addCase(updateAuthor.fulfilled, (state, action) => {
       state.isLoading = false
+      const updatedAuthors = state.data.map((author) => {
+        if (author.id == action.payload.object.id) {
+          return {
+            ...author,
+            name: action.payload.object.name
+          }
+        }
+        return author
+      })
+      state.data = updatedAuthors
     })
+
     // updating data
     builder.addCase(addAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      console.log(action.payload.msg)
+      const updatedAuthors = [...state.data, action.payload.object]
+      state.data = updatedAuthors
     })
     // deleting data
     builder.addCase(deleteAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      console.log(action.payload.msg)
+      const filterById = [...state.data].filter((d) => {
+        if (d.id !== action.payload.id) {
+          return d
+        }
+      })
+      state.data = filterById
     })
   }
 })

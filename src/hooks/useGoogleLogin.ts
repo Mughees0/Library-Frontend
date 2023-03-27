@@ -1,13 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../store'
-import { updateUser } from '../redux/slices/userSlice'
 import { User, Response } from '../types'
 import { useNavigate } from 'react-router-dom'
 
-const useGoogleData = (): void => {
-  const dispatch = useDispatch<AppDispatch>()
+const useGoogleLogin = () => {
   const navigate = useNavigate()
 
   function handleCallbackResponse(response: Response) {
@@ -20,7 +16,6 @@ const useGoogleData = (): void => {
         navigate('/')
       }
     }
-    dispatch(updateUser(userObject))
   }
 
   useEffect(() => {
@@ -38,4 +33,4 @@ const useGoogleData = (): void => {
   })
 }
 
-export default useGoogleData
+export default useGoogleLogin

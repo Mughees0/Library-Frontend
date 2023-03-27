@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
-import useGoogleData from '../hooks/useGoogleLogin'
-import { fetchUser } from '../redux/slices/userSlice'
-import { AppDispatch } from '../store'
+import useGoogleData from '../hooks/useGoogleData'
+import useGoogleLogin from '../hooks/useGoogleLogin'
 
 const Login = () => {
-  const dispatch = useDispatch<AppDispatch>()
-  const google = useGoogleData()
-  const [token, setToken] = useState('')
+  const google = useGoogleLogin()
+  const [user, token] = useGoogleData()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    dispatch(fetchUser())
-    const items = localStorage.getItem('token')
-    if (items) {
-      setToken(items)
-    }
-  }, [token])
 
   return (
     <>

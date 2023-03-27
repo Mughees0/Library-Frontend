@@ -7,16 +7,14 @@ import Footer from './components/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from './store'
 import { fetchUser } from './redux/slices/userSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
+import jwtDecode from 'jwt-decode'
+import { User } from './types'
+import { useGoogleData } from './hooks/useGoogleData'
 
 function App() {
-  const user = useSelector((state: RootState) => state.userData.data)
-  const dispatch = useDispatch<AppDispatch>()
-
-  useEffect(() => {
-    dispatch(fetchUser())
-  }, [])
+  const [user, token] = useGoogleData()
 
   return (
     <BrowserRouter>
@@ -24,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<UserLibrary />} />
           <Route path="/login" element={<Login />} />
-          {user[0].email === 'abdul.mughees009@gmail.com' ? (
+          {user.email === 'abdul.mughees009@gmail.com' ? (
             <Route path="/admin" element={<Admin />} />
           ) : (
             <Route

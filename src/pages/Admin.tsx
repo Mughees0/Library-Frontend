@@ -67,12 +67,10 @@ const Admin = () => {
   function handleDelete(id: number): void {
     dispatch(deleteBook(id))
     toast.success('Successfully Deleted!')
-    setTimeout(() => {
-      location.reload()
-    }, 2000)
   }
 
   function handleAdd(object: Book): void {
+    setId(Date.now())
     setIsbn(object.ISBN)
     setTitle(object.title)
     setDescription(object.description)
@@ -91,15 +89,9 @@ const Admin = () => {
     if (btnText === 'ADD') {
       dispatch(addBook(bookInput))
       toast.success('Successfully Added!')
-      setTimeout(() => {
-        location.reload()
-      }, 2000)
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
       toast.success('Successfully Update!')
-      setTimeout(() => {
-        location.reload()
-      }, 2000)
     } else {
       toast('Please select an option, Add or update')
     }
@@ -123,12 +115,10 @@ const Admin = () => {
   function handleAuthorDelete(id: number) {
     dispatch(deleteAuthor(id))
     toast.success('Successfully Deleted!')
-    setTimeout(() => {
-      location.reload()
-    }, 2000)
   }
 
   function handleAuthorAdd(author: Author) {
+    setAuthorId(Date.now())
     setAuthorName(author.name)
     setAuthorBtnText('ADD')
   }
@@ -138,15 +128,9 @@ const Admin = () => {
     if (authorBtnText === 'UPDATE') {
       dispatch(updateAuthor(authorItem))
       toast.success('Successfully Update!')
-      setTimeout(() => {
-        location.reload()
-      }, 2000)
     } else if (authorBtnText === 'ADD') {
       dispatch(addAuthor(authorItem))
       toast.success('Successfully Added!')
-      setTimeout(() => {
-        location.reload()
-      }, 2000)
     } else {
       toast('Please select an option, Add or update')
     }
