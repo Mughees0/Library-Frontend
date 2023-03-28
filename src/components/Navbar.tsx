@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { clearUser, fetchUser } from '../redux/slices/userSlice'
-import { AppDispatch, RootState } from '../store'
-import logo from '../assets/logo.png'
-import jwtDecode from 'jwt-decode'
-import { Response, User } from '../types'
 import useGoogleData from '../hooks/useGoogleData'
+import { useNavigate } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const navigate = useNavigate()

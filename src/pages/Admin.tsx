@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast, ToastContainer } from 'react-toastify'
-import Navbar from '../components/Navbar'
+import { AppDispatch, RootState } from '../store'
 import { addAuthor, deleteAuthor, fetchAuthor, updateAuthor } from '../redux/slices/authorSlice'
 import { addBook, deleteBook, fetchBooks, updateBook } from '../redux/slices/bookSlice'
-import { IoIosArrowRoundBack } from 'react-icons/io'
-import { AppDispatch, RootState } from '../store'
+import Navbar from '../components/Navbar'
 import { Author, Book } from '../types'
-import Footer from '../components/Footer'
+import { toast, ToastContainer } from 'react-toastify'
+import { IoIosArrowRoundBack } from 'react-icons/io'
 
 const Admin = () => {
   const Books = useSelector((state: RootState) => state.bookData.data)
   const author = useSelector((state: RootState) => state.authorData.data)
   const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    dispatch(fetchBooks())
+    dispatch(fetchAuthor())
+  }, [])
+
+  //Books
   const [id, setId] = useState(0)
   const [isbn, setIsbn] = useState('')
   const [title, setTitle] = useState('')
@@ -28,13 +34,7 @@ const Admin = () => {
   const [modalTable, setModalTable] = useState(false)
   const [authorModalTable, setAuthorModalTable] = useState(false)
 
-  useEffect(() => {
-    dispatch(fetchBooks())
-    dispatch(fetchAuthor())
-  }, [])
-
   const borrow = borrowed === 'false' ? false : true
-
   const bookInput: Book = {
     id: id,
     ISBN: isbn,
@@ -97,6 +97,8 @@ const Admin = () => {
     }
     setModalTable(!modalTable)
   }
+
+  // Authors
   const [authorId, setAuthorId] = useState(0)
   const [authorName, setAuthorName] = useState('')
   const [authorBtnText, setAuthorBtnText] = useState('Submit')
@@ -140,12 +142,12 @@ const Admin = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col gap-9 items-centerjustify-around">
-        <section className="outline bg-yellow-300 w-screen flex flex-col gap-20 justify-between">
+      <div className="flex flex-col gap-9 min-h-screen items-center justify-around">
+        <section className="outline bg-white w-screen flex flex-col gap-20 justify-between">
           {modalTable ? (
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className="outline flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-3xl">
+              className="outline flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -319,7 +321,7 @@ const Admin = () => {
                 <th className="text-3xl">Books</th>
                 <td>
                   <button
-                    className="rounded-full bg-green-500 px-4"
+                    className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                     onClick={() => {
                       handleAdd(bookInput)
                       setModalTable(!modalTable)
@@ -333,15 +335,15 @@ const Admin = () => {
               {Books.map((book) => {
                 return (
                   <tr
-                    className="outline flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
+                    className=" hover:bg-gray-200 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
                     key={book.id}>
                     <td className="text-2xl text-black ">{book.title}</td>
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
-                    <td className="outline">{book.description}</td>
+                    <td className="">{book.description}</td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleUpdate(book)
                           setModalTable(!modalTable)
@@ -363,14 +365,14 @@ const Admin = () => {
                     </td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => handleDelete(book.id)}>
                         Delete
                       </button>
                     </td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAdd(book)
                           setModalTable(!modalTable)
@@ -385,10 +387,10 @@ const Admin = () => {
           </table>
         </section>
         {/* Author form */}
-        <section className=" bg-yellow-300 w-screen flex flex-col justify-between">
+        <section className=" bg-white w-screen flex flex-col justify-between">
           {authorModalTable ? (
             <form
-              className="outline flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-36 w-96 shadow-3xl"
+              className="outline flex flex-col gap-2 items-center absolute bg-yellow-100 right-0 bottom-0 left-0 m-auto h-36 w-96 shadow-full"
               onSubmit={(e) => handleAuthorSubmit(e)}>
               <ToastContainer
                 position="top-right"
@@ -407,7 +409,7 @@ const Admin = () => {
                   <tr>
                     <td className="text-sm flex w-80">
                       <button
-                        className="flex items-center gap-1"
+                        className="flex hover:bg-yellow-200 hover:shadow-2xl hover:transition-all items-center gap-1"
                         onClick={() => setAuthorModalTable(!authorModalTable)}>
                         <IoIosArrowRoundBack /> Back
                       </button>
@@ -453,7 +455,7 @@ const Admin = () => {
                 <th className="text-2xl">Authors</th>
                 <td>
                   <button
-                    className="rounded-full bg-green-500 px-4"
+                    className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                     onClick={() => {
                       handleAuthorAdd(authorItem)
                       setAuthorModalTable(!authorModalTable)
@@ -467,12 +469,12 @@ const Admin = () => {
               {author.map((author) => {
                 return (
                   <tr
-                    className="outline flex flex-col px-9 gap-1 items-start py-4 my-3"
+                    className="outline hover:bg-gray-200 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 items-start py-4 my-3"
                     key={author.id}>
                     <td className="text-2xl text-black ">{author.name}</td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAuthorUpdate(author)
                           setAuthorModalTable(!authorModalTable)
@@ -494,14 +496,14 @@ const Admin = () => {
                     </td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => handleAuthorDelete(author.id)}>
                         Delete
                       </button>
                     </td>
                     <td>
                       <button
-                        className="rounded-full bg-green-500 px-4"
+                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAuthorAdd(author)
                           setAuthorModalTable(!authorModalTable)

@@ -75,15 +75,15 @@ const userLibrary = () => {
             onClick={() => {
               dispatch(filterBookByName(filterText))
             }}
-            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            className="text-white  hover:shadow-2xl hover:transition-all absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Search
           </button>
         </div>
       </header>
-      <main className="flex items-start w-screen justify-center flex-wrap-reverse sm:flex-nowrap">
-        <section className=" bg-gray-200 w-5/6 py-3 my-12 mx-12 flex flex-col items-center">
+      <main className="flex items-start w-screen justify-center min-h-screen flex-wrap-reverse sm:flex-nowrap">
+        <section className=" bg-gray-200 w-5/6 py-5 my-12 mx-12 flex flex-col items-center rounded-lg">
           <table className="w-4/5 ">
-            <thead className="text-3xl underline  text-black">
+            <thead className="text-3xl underline text-black">
               <tr className="">
                 <td>
                   <h2>Books</h2>
@@ -94,7 +94,7 @@ const userLibrary = () => {
               {Books.map((book) => {
                 return (
                   <tr
-                    className="outline py-2 my-2 flex flex-wrap px-9 gap-3 items-center hover:bg-gray-300 hover:shadow-2xl hover:transition-all"
+                    className=" py-2 rounded-md my-2 flex flex-wrap px-9 gap-3 items-center hover:bg-gray-300 hover:shadow-2xl hover:transition-all"
                     key={book.id}>
                     <td className="w-36">
                       <img src={cover} alt="Book Cover" />
@@ -115,7 +115,7 @@ const userLibrary = () => {
                               <>
                                 <button
                                   onClick={() => handleBorrow(book)}
-                                  className="bg-custom-greenish rounded-full px-4 my-3">
+                                  className="bg-custom-greenish hover:bg-yellow-200  transition-all rounded-full  px-4 my-3">
                                   Borrow
                                 </button>
                                 <ToastContainer

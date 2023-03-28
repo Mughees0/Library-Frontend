@@ -30,15 +30,15 @@ export const fetchBooks = createAsyncThunk('books/fetch', async () => {
   }
 })
 
-export const updateBook = createAsyncThunk('books/update', async (object: Book) => {
+export const updateBook = createAsyncThunk('books/update', async (updatedObject: Book) => {
   return {
-    object
+    updatedObject
   }
 })
 
-export const addBook = createAsyncThunk('books/add', async (object: Book) => {
+export const addBook = createAsyncThunk('books/add', async (addedObject: Book) => {
   return {
-    object
+    addedObject
   }
 })
 
@@ -80,19 +80,19 @@ export const userDataSlice = createSlice({
     builder.addCase(updateBook.fulfilled, (state, action) => {
       state.isLoading = false
       const updatedBooks = state.data.map((book) => {
-        if (book.id == action.payload.object.id) {
+        if (book.id == action.payload.updatedObject.id) {
           return {
             ...book,
-            ISBN: action.payload.object.ISBN,
-            title: action.payload.object.title,
-            description: action.payload.object.description,
-            author: action.payload.object.author,
-            publisher: action.payload.object.publisher,
-            borrowed: action.payload.object.borrowed,
-            borrowerId: action.payload.object.borrowerId,
-            publishedDate: action.payload.object.publishedDate,
-            borrowDate: action.payload.object.borrowDate,
-            returnDate: action.payload.object.returnDate
+            ISBN: action.payload.updatedObject.ISBN,
+            title: action.payload.updatedObject.title,
+            description: action.payload.updatedObject.description,
+            author: action.payload.updatedObject.author,
+            publisher: action.payload.updatedObject.publisher,
+            borrowed: action.payload.updatedObject.borrowed,
+            borrowerId: action.payload.updatedObject.borrowerId,
+            publishedDate: action.payload.updatedObject.publishedDate,
+            borrowDate: action.payload.updatedObject.borrowDate,
+            returnDate: action.payload.updatedObject.returnDate
           }
         }
         return book
@@ -102,7 +102,7 @@ export const userDataSlice = createSlice({
     // adding book
     builder.addCase(addBook.fulfilled, (state, action) => {
       state.isLoading = false
-      const updatedBooks = [...state.data, action.payload.object]
+      const updatedBooks = [...state.data, action.payload.addedObject]
       state.data = updatedBooks
     })
     // deleting data

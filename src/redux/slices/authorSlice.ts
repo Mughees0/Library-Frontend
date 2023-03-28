@@ -17,14 +17,14 @@ export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
   }
 })
 
-export const updateAuthor = createAsyncThunk('author/update', async (object: Author) => {
+export const updateAuthor = createAsyncThunk('author/update', async (updatedObject: Author) => {
   return {
-    object
+    updatedObject
   }
 })
-export const addAuthor = createAsyncThunk('author/add', async (object: Author) => {
+export const addAuthor = createAsyncThunk('author/add', async (addedObject: Author) => {
   return {
-    object
+    addedObject
   }
 })
 
@@ -55,10 +55,10 @@ export const userDataSlice = createSlice({
     builder.addCase(updateAuthor.fulfilled, (state, action) => {
       state.isLoading = false
       const updatedAuthors = state.data.map((author) => {
-        if (author.id == action.payload.object.id) {
+        if (author.id == action.payload.updatedObject.id) {
           return {
             ...author,
-            name: action.payload.object.name
+            name: action.payload.updatedObject.name
           }
         }
         return author
@@ -69,7 +69,7 @@ export const userDataSlice = createSlice({
     // updating data
     builder.addCase(addAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      const updatedAuthors = [...state.data, action.payload.object]
+      const updatedAuthors = [...state.data, action.payload.addedObject]
       state.data = updatedAuthors
     })
     // deleting data

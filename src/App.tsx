@@ -4,14 +4,10 @@ import Login from './pages/Login'
 import UserLibrary from './pages/userLibrary'
 import Admin from './pages/Admin'
 import Footer from './components/Footer'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from './store'
-import { fetchUser } from './redux/slices/userSlice'
-import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
-import jwtDecode from 'jwt-decode'
-import { User } from './types'
 import { useGoogleData } from './hooks/useGoogleData'
+
+export const ADMIN_WHITELIST = ['abdul.mughees009@gmail.com']
 
 function App() {
   const [user, token] = useGoogleData()
@@ -22,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<UserLibrary />} />
           <Route path="/login" element={<Login />} />
-          {user.email === 'abdul.mughees009@gmail.com' ? (
+          {ADMIN_WHITELIST.includes(user.email) ? (
             <Route path="/admin" element={<Admin />} />
           ) : (
             <Route
