@@ -8,11 +8,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="h-16  bg-black">
+      <nav className="h-16  bg-black font-medium">
         <ul className="flex h-full justify-between items-center text-white ">
           <li className="flex items-center justify-between text-white hover:underline">
             <img className="h-12 ml-4" src={logo} />
-            Book Byte
+            <span className="pl-3 text-xl">Mr. Books</span>
           </li>
           <div className="flex h-16 items-center">
             <li className="hover:bg-custom-greenish h-full flex items-center w-20 justify-center">

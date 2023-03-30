@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+  ],
   theme: {
     extend: {
       boxShadow: {
@@ -12,9 +17,13 @@ module.exports = {
         'custom-greenish': '#51b6af'
       },
       fontFamily: {
-        heading: ['Alegreya']
+        heading: ['Alegreya'],
+        nav: ['Alkatra'],
+        mediumHead: ['gt-super', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+        bookHead: ['sohne', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        bookDesc: ['source-serif-pro', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif']
       }
     }
   },
-  plugins: []
+  plugins: [require('flowbite/plugin')]
 }

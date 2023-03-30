@@ -14,7 +14,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen bg-gray-400 text-center">
+      <div className="flex flex-col min-h-screen bg-gray-900 text-white">
         <Routes>
           <Route path="/" element={<UserLibrary />} />
           <Route path="/login" element={<Login />} />

@@ -138,8 +138,8 @@ export const userDataSlice = createSlice({
           return {
             ...book,
             borrowed: true,
-            borrowDate: `${moment().format('DD/MM/YYYY')}`,
-            returnDate: `${moment().add(1, 'M').format(`DD/MM/YYYY`)}`
+            borrowDate: `${moment().format('YYYY/MM/DD')}`,
+            returnDate: `${moment().add(1, 'M').format(`YYYY/MM/DD`)}`
           }
         }
         return book
