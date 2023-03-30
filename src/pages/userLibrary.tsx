@@ -18,6 +18,7 @@ import useGoogleData from '../hooks/useGoogleData'
 import Header from '../components/Header'
 import BookTable from '../components/bookForUser/Table'
 import BookFilters from '../components/bookForUser/BookFilters'
+import ReactPaginate from 'react-paginate'
 
 const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
@@ -52,6 +53,17 @@ const userLibrary = () => {
     }
   }
 
+  const [itemOffset, setItemOffset] = useState(0)
+  const endOffset = itemOffset + 3
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`)
+  const currentItems = Books.slice(itemOffset, endOffset)
+  const pageCount = Math.ceil(Books.length / 3)
+
+  const handlePageClick = (event: { selected: number }) => {
+    const newOffset = (event.selected * 3) % Books.length
+    console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`)
+    setItemOffset(newOffset)
+  }
   return (
     <>
       <Navbar />
@@ -62,7 +74,7 @@ const userLibrary = () => {
           cover={cover}
           handleBorrow={handleBorrow}
           handleReturn={handleReturn}
-          Books={Books}
+          Books={currentItems}
         />
         <BookFilters
           Books={Books}
@@ -72,21 +84,19 @@ const userLibrary = () => {
         />
       </main>
       <div className="flex flex-col items-center">
-        {/* <!-- Help text --> */}
-        <span className="text-sm text-gray-700 dark:text-gray-400">
-          Showing <span className="font-semibold text-gray-900 dark:text-white">1</span> to{' '}
-          <span className="font-semibold text-gray-900 dark:text-white">10</span> of{' '}
-          <span className="font-semibold text-gray-900 dark:text-white">100</span> Entries
-        </span>
-        {/* <!-- Buttons --> */}
-        <div className="inline-flex mt-2 xs:mt-0">
-          <button className="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            Prev
-          </button>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            Next
-          </button>
-        </div>
+        <ReactPaginate
+          breakLabel="..."
+          containerClassName="  flex items-center mt-2 xs:mt-0"
+          nextLinkClassName="px-4 py-2 text-sm font-medium text-white border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 bg-gray-600"
+          nextLabel="next ->"
+          onPageChange={(e) => handlePageClick(e)}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          pageClassName="px-4 flex items-center text-md hover:text-green-300 active:text-yellow-300 hover:shadow-2xl"
+          previousClassName="px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-l hover:bg-gray-900 "
+          previousLabel="<- Back"
+          renderOnZeroPageCount={null}
+        />
       </div>
     </>
   )
