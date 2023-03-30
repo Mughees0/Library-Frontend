@@ -96,11 +96,11 @@ const AdminBooks = () => {
   return (
     <>
       <div className="flex flex-col gap-9 min-h-screen items-center justify-around">
-        <section className="outline  w-screen flex flex-col gap-20 justify-between">
+        <section className=" w-screen flex flex-col gap-20 justify-between">
           {modalTable ? (
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className="outline flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
+              className=" flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -145,7 +145,7 @@ const AdminBooks = () => {
           )}
           {/* modal end */}
           {/* table to display items */}
-          <table className="outline text-gray-300 ">
+          <table className=" text-gray-300 ">
             <thead>
               <tr className="flex flex-col justify-center items-center flex-wrap">
                 <th className="text-3xl text-white my-5">Books</th>
@@ -165,7 +165,7 @@ const AdminBooks = () => {
               {Books.map((book) => {
                 return (
                   <tr
-                    className=" hover:bg-gray-200 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
+                    className="rounded-lg border-2 border-gray-600 hover:bg-gray-700 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
                     key={book.id}>
                     <td className="text-2xl text-white">{book.title}</td>
                     <td>{book.author}</td>

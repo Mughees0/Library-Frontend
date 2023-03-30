@@ -91,7 +91,7 @@ const AdminAuthor = () => {
             <></>
           )}
           {/* Author Table  */}
-          <table className="outline text-gray-300 ">
+          <table className=" text-gray-300 ">
             <thead>
               <tr className="flex flex-col justify-center items-center flex-wrap">
                 <th className="text-2xl py-5 text-white">Authors</th>
@@ -111,7 +111,7 @@ const AdminAuthor = () => {
               {author.map((author) => {
                 return (
                   <tr
-                    className="outline hover:bg-gray-200 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 items-start py-4 my-3"
+                    className="rounded-lg border-2 border-gray-600 hover:bg-gray-700 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 items-start py-4 my-3"
                     key={author.id}>
                     <td className="text-2xl text-white ">{author.name}</td>
                     <td>
