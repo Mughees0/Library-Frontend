@@ -16,7 +16,7 @@ import { RootState, AppDispatch } from '../store'
 import { Book } from '../types'
 import useGoogleData from '../hooks/useGoogleData'
 import Header from '../components/Header'
-import BookTable from '../components/bookForUser/BookTable'
+import BookTable from '../components/bookForUser/Table'
 import BookFilters from '../components/bookForUser/BookFilters'
 
 const userLibrary = () => {

@@ -6,6 +6,7 @@ import Admin from './pages/Admin'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { useGoogleData } from './hooks/useGoogleData'
+import Home from './pages/Home'
 
 export const ADMIN_WHITELIST = ['abdul.mughees009@gmail.com']
 
@@ -16,8 +17,9 @@ function App() {
     <BrowserRouter>
       <div className="flex flex-col min-h-screen bg-gray-900 text-white">
         <Routes>
-          <Route path="/" element={<UserLibrary />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/library" element={<UserLibrary />} />
           {ADMIN_WHITELIST.includes(user.email) ? (
             <Route path="/admin" element={<Admin />} />
           ) : (

@@ -4,7 +4,7 @@ import { AppDispatch, RootState } from '../../store'
 import { addBook, deleteBook, fetchBooks, updateBook } from '../../redux/slices/bookSlice'
 import { Book } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
-import BookTable from './BookTable'
+import BookTable from './Table'
 
 const AdminBooks = () => {
   const Books = useSelector((state: RootState) => state.bookData.data)

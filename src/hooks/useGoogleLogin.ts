@@ -19,8 +19,11 @@ const useGoogleLogin = () => {
     })
 
     window.google.accounts.id.renderButton(document.querySelector('#signIn'), {
-      theme: 'outline',
-      size: 'large'
+      // type: 'icon',
+      // shape: 'circle',
+      theme: 'filled_blue',
+      text: 'signin',
+      size: 'medium'
     })
 
     window.google.accounts.id.prompt()
