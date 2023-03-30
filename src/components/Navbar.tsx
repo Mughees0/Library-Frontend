@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img src={logo} className="h-8 mr-3" alt="Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap ">Mr.Books</span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap ">Mr. Books</span>
           </a>
           <div className="flex items-center md:order-2">
             {!token ? (

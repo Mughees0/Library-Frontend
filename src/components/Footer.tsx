@@ -17,7 +17,7 @@ const Footer = () => {
         <span className="text-sm  sm:text-center dark:text-gray-400">
           © 2023{' '}
           <a href="/" className="hover:underline">
-            Mr.Books™
+            Mr. Books™
           </a>
           . All Rights Reserved.
         </span>

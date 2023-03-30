@@ -64,7 +64,7 @@ const AdminAuthor = () => {
         <section className="  w-screen flex flex-col justify-between">
           {authorModalTable ? (
             <form
-              className="outline flex flex-col gap-2 items-center absolute bg-yellow-100 right-0 bottom-0 left-0 m-auto h-36 w-96 shadow-full"
+              className="border-2 border-gray-400 flex flex-col gap-2 items-center absolute rounded-lg bg-gray-700 right-0 left-0 m-auto h-44 w-96 shadow-full"
               onSubmit={(e) => handleAuthorSubmit(e)}>
               <ToastContainer
                 position="top-right"
@@ -97,7 +97,7 @@ const AdminAuthor = () => {
                 <th className="text-2xl py-5 text-white">Authors</th>
                 <td>
                   <button
-                    className="rounded-full text-yellow-300 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                    className="rounded-full text-yellow-300 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                     onClick={() => {
                       handleAuthorAdd(authorItem)
                       setAuthorModalTable(!authorModalTable)
@@ -116,7 +116,7 @@ const AdminAuthor = () => {
                     <td className="text-2xl text-white ">{author.name}</td>
                     <td>
                       <button
-                        className="rounded-full text-yellow-200 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-yellow-200 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAuthorUpdate(author)
                           setAuthorModalTable(!authorModalTable)
@@ -138,14 +138,14 @@ const AdminAuthor = () => {
                     </td>
                     <td>
                       <button
-                        className="rounded-full text-red-400 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-red-400 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => handleAuthorDelete(author.id)}>
                         Delete
                       </button>
                     </td>
                     <td>
                       <button
-                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAuthorAdd(author)
                           setAuthorModalTable(!authorModalTable)

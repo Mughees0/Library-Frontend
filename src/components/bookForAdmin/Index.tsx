@@ -100,7 +100,7 @@ const AdminBooks = () => {
           {modalTable ? (
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className=" flex flex-col gap-2 items-center absolute bg-red-400 top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
+              className=" flex flex-col gap-2  items-center absolute top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -151,7 +151,7 @@ const AdminBooks = () => {
                 <th className="text-3xl text-white my-5">Books</th>
                 <td>
                   <button
-                    className="rounded-full text-yellow-300 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                    className="rounded-full text-yellow-300 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                     onClick={() => {
                       handleAdd(bookInput)
                       setModalTable(!modalTable)
@@ -173,7 +173,7 @@ const AdminBooks = () => {
                     <td className="">{book.description}</td>
                     <td>
                       <button
-                        className="rounded-full text-yellow-200 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-yellow-200 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleUpdate(book)
                           setModalTable(!modalTable)
@@ -195,14 +195,14 @@ const AdminBooks = () => {
                     </td>
                     <td>
                       <button
-                        className="rounded-full text-red-400 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-red-400 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => handleDelete(book.id)}>
                         Delete
                       </button>
                     </td>
                     <td>
                       <button
-                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleAdd(book)
                           setModalTable(!modalTable)
