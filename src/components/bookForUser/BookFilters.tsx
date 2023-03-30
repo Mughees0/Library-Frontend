@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { filterBookByAuthor } from '../../redux/slices/bookSlice'
+import { fetchBooks, filterBookByAuthor } from '../../redux/slices/bookSlice'
 import { AppDispatch } from '../../store'
 import { UserBookFilters } from '../../types'
 
@@ -70,17 +70,16 @@ const BookFilters = ({ Books, Authors, handleAuthorSearch, setFilterAuthor }: Us
                 return (
                   <li key={book.id}>
                     <div className="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                      <input
-                        id="checkbox-item-15"
-                        type="checkbox"
-                        value={''}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
                       <label
                         htmlFor="checkbox-item-15"
                         onClick={() => dispatch(filterBookByAuthor(book.author))}
                         className="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
                         {book.author}
+                      </label>
+                      <label
+                        className=" hover:text-red-500 text-md pr-3"
+                        onClick={() => dispatch(fetchBooks())}>
+                        X
                       </label>
                     </div>
                   </li>
@@ -91,29 +90,33 @@ const BookFilters = ({ Books, Authors, handleAuthorSearch, setFilterAuthor }: Us
         </div>
         <div>
           {' '}
-          <ul className="pt-5 flex flex-col items-start w-46">
-            <li className="text-lg py-3 font-bookHead">List of authors:</li>
+          <ul className="pt-5 flex flex-col items-start w-60">
+            <li className="text-lg py-3 font-bookHead font-bold underline">List of authors:</li>
             {Authors.map((author) => (
               <li className="pb-1 font-bookDesc" key={author.id}>
                 {author.name}
               </li>
             ))}
           </ul>
-          <ul className="pt-5 flex flex-col items-start w-46">
-            <li className="text-lg py-3 font-bookHead">Subjects:</li>
-            {Authors.map((author) => (
-              <li className="pb-1 font-bookDesc" key={author.id}>
-                {author.name}
-              </li>
-            ))}
+          <ul className="pt-5 flex flex-col items-start w-60">
+            <li className="text-lg py-3 font-bookHead font-bold underline">Subjects:</li>
+
+            <li className="pb-1 font-bookDesc">Science and Technology</li>
+            <li className="pb-1 font-bookDesc">Life sciences</li>
+            <li className="pb-1 font-bookDesc">Literature</li>
+            <li className="pb-1 font-bookDesc">Chemistry</li>
+            <li className="pb-1 font-bookDesc">Animals</li>
+            <li className="pb-1 font-bookDesc">Physical sciences</li>
           </ul>
-          <ul className="pt-5 flex flex-col items-start w-46">
-            <li className="text-lg py-3 font-bookHead">Resource Type:</li>
-            {Authors.map((author) => (
-              <li className="pb-1 font-bookDesc" key={author.id}>
-                {author.name}
-              </li>
-            ))}
+          <ul className="pt-5 flex flex-col items-start w-60">
+            <li className="text-lg py-3 font-bookHead font-bold underline">Resource Type:</li>
+
+            <li className="pb-1 font-bookDesc">Articles</li>
+            <li className="pb-1 font-bookDesc">Reports</li>
+            <li className="pb-1 font-bookDesc">Patents</li>
+            <li className="pb-1 font-bookDesc">Web Resources</li>
+            <li className="pb-1 font-bookDesc">Books</li>
+            <li className="pb-1 font-bookDesc">Audio</li>
           </ul>
         </div>
       </section>
