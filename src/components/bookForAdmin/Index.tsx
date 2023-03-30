@@ -4,7 +4,7 @@ import { AppDispatch, RootState } from '../../store'
 import { addBook, deleteBook, fetchBooks, updateBook } from '../../redux/slices/bookSlice'
 import { Book } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
-import BookTable from './Table'
+import BookTable from './Form'
 
 const AdminBooks = () => {
   const Books = useSelector((state: RootState) => state.bookData.data)
@@ -96,7 +96,7 @@ const AdminBooks = () => {
   return (
     <>
       <div className="flex flex-col gap-9 min-h-screen items-center justify-around">
-        <section className="outline bg-white w-screen flex flex-col gap-20 justify-between">
+        <section className="outline  w-screen flex flex-col gap-20 justify-between">
           {modalTable ? (
             <form
               onSubmit={(e) => handleSubmit(e)}
@@ -145,13 +145,13 @@ const AdminBooks = () => {
           )}
           {/* modal end */}
           {/* table to display items */}
-          <table className="outline  ">
+          <table className="outline text-gray-300 ">
             <thead>
               <tr className="flex flex-col justify-center items-center flex-wrap">
-                <th className="text-3xl">Books</th>
+                <th className="text-3xl text-white my-5">Books</th>
                 <td>
                   <button
-                    className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                    className="rounded-full text-yellow-300 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                     onClick={() => {
                       handleAdd(bookInput)
                       setModalTable(!modalTable)
@@ -167,13 +167,13 @@ const AdminBooks = () => {
                   <tr
                     className=" hover:bg-gray-200 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
                     key={book.id}>
-                    <td className="text-2xl text-black ">{book.title}</td>
+                    <td className="text-2xl text-white">{book.title}</td>
                     <td>{book.author}</td>
-                    <td>{book.publishedDate}</td>
+                    <td className="pb-4">{book.publishedDate}</td>
                     <td className="">{book.description}</td>
                     <td>
                       <button
-                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-yellow-200 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => {
                           handleUpdate(book)
                           setModalTable(!modalTable)
@@ -195,7 +195,7 @@ const AdminBooks = () => {
                     </td>
                     <td>
                       <button
-                        className="rounded-full hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
+                        className="rounded-full text-red-400 hover:bg-yellow-200 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
                         onClick={() => handleDelete(book.id)}>
                         Delete
                       </button>

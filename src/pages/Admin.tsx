@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar'
-import AdminAuthor from '../components/authorForAdmin/AdminAuthors'
-import AdminBooks from '../components/bookForAdmin/AdminBooks'
+import AdminAuthor from '../components/authorForAdmin/Index'
+import AdminBooks from '../components/bookForAdmin/Index'
 
 const Admin = () => {
   return (
