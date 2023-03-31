@@ -9,7 +9,7 @@ const initialState: AuthorState = {
 }
 
 export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
-  const res = await fetch(`http://localhost:5173/db.json`)
+  const res = await fetch(`https://mrbooks.netlify.app/author.json`)
   const authors: Author[] = await res.json()
   return {
     authors,
@@ -49,7 +49,7 @@ export const userDataSlice = createSlice({
     })
     builder.addCase(fetchAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      state.data = action.payload.authors.Author
+      state.data = action.payload.authors
     })
     // updating data
     builder.addCase(updateAuthor.fulfilled, (state, action) => {

@@ -1,3 +1,4 @@
+import { Dropdown } from 'flowbite-react'
 import { useDispatch } from 'react-redux'
 import { fetchBooks, filterBookByAuthor } from '../../redux/slices/bookSlice'
 import { AppDispatch } from '../../store'
@@ -88,6 +89,22 @@ const BookFilters = ({ Books, Authors, handleAuthorSearch, setFilterAuthor }: Us
             </ul>
           </div>
         </div>
+        {/* <Dropdown label="Dropdown">
+          {Books.map((book) => {
+            return (
+              <Dropdown.Item key={book.id}>
+                <label onClick={() => dispatch(filterBookByAuthor(book.author))}>
+                  {book.author}
+                </label>
+                <label
+                  className=" hover:text-red-500 text-md pr-3"
+                  onClick={() => dispatch(fetchBooks())}>
+                  X
+                </label>
+              </Dropdown.Item>
+            )
+          })}
+        </Dropdown> */}
         <div>
           {' '}
           <ul className="pt-5 flex flex-col items-start w-60">

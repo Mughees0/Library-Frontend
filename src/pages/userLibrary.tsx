@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Nav'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { fetchAuthor } from '../redux/slices/authorSlice'

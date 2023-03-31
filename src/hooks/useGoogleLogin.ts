@@ -2,6 +2,11 @@ import { useEffect } from 'react'
 import { Response } from '../types'
 import { useNavigate } from 'react-router-dom'
 
+declare global {
+  interface Window {
+    google: any
+  }
+}
 const useGoogleLogin = () => {
   const navigate = useNavigate()
 
@@ -10,6 +15,7 @@ const useGoogleLogin = () => {
       localStorage.setItem('token', response.credential)
     }
     navigate('/')
+    location.reload()
   }
 
   useEffect(() => {
@@ -21,12 +27,12 @@ const useGoogleLogin = () => {
     window.google.accounts.id.renderButton(document.querySelector('#signIn'), {
       // type: 'icon',
       // shape: 'circle',
-      theme: 'filled_blue',
+      theme: 'outline',
       text: 'signin',
       size: 'medium'
     })
 
-    window.google.accounts.id.prompt()
+    // window.google.accounts.id.prompt()
   })
 }
 

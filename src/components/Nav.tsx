@@ -1,9 +1,10 @@
 import useGoogleData from '../hooks/useGoogleData'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import useGoogleLogin from '../hooks/useGoogleLogin'
+// import { Avatar, Dropdown, Navbar } from 'flowbite-react'
 
-const Navbar = () => {
+const Nav = () => {
   const navigate = useNavigate()
   const google = useGoogleLogin()
   const [user, token] = useGoogleData()
@@ -18,10 +19,7 @@ const Navbar = () => {
           </a>
           <div className="flex items-center md:order-2">
             {!token ? (
-              <a href="/login">
-                Login
-                {/* <div id="signIn"></div> */}
-              </a>
+              <Link to="/login">Login</Link>
             ) : (
               <div className="px-3 flex gap-3 w-full justify-between text-white">
                 <button
@@ -36,7 +34,7 @@ const Navbar = () => {
                 </button>
               </div>
             )}
-            {/* <!-- Dropdown menu --> */}
+
             <div
               className="z-50 hidden my-4 text-white text-base list-none bg-gray-700 divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown">
@@ -48,8 +46,8 @@ const Navbar = () => {
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     onClick={() => {
                       localStorage.clear()
                       navigate('/')
@@ -57,7 +55,7 @@ const Navbar = () => {
                     }}
                     className="block px-4 py-2 text-sm  hover:bg-gray-600 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -86,28 +84,28 @@ const Navbar = () => {
             id="mobile-menu-2">
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-600  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent  md:p-0 
                   md:hover:text-yellow-400 md:dark:text-blue-500"
                   aria-current="page">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/library"
+                <Link
+                  to="/library"
                   className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0  ">
                   Library
-                </a>
+                </Link>
               </li>
               {user.email === 'abdul.mughees009@gmail.com' ? (
                 <li>
-                  <a
+                  <Link
                     className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0  "
-                    href="/admin">
+                    to="/admin">
                     Admin
-                  </a>
+                  </Link>
                 </li>
               ) : (
                 <></>
@@ -116,8 +114,52 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      {/* <Navbar fluid={true} className="bg-slate-700">
+        <Navbar.Brand href="/">
+          <img src={logo} className="mr-3 h-6 sm:h-9" alt="mr. Books Logo" />
+          <span className="self-center whitespace-nowrap text-xl font-semibold">Mr. Books</span>
+        </Navbar.Brand>
+        <div className="flex md:order-2">
+          <Dropdown
+            className="bg-slate-700"
+            arrowIcon={false}
+            inline={true}
+            label={<Avatar alt="User settings" img={user.picture} rounded={true} />}>
+            <Dropdown.Header>
+              <span className="block text-white text-sm">{user.name}</span>
+              <span className="block text-white truncate text-sm font-medium">{user.email}</span>
+            </Dropdown.Header>
+            <Dropdown.Divider />
+            <Dropdown.Item
+              className="text-white"
+              onClick={() => {
+                localStorage.clear()
+                navigate('/')
+                location.reload()
+              }}>
+              Sign out
+            </Dropdown.Item>
+          </Dropdown>
+          <Navbar.Toggle />
+        </div>
+        <Navbar.Collapse>
+          <Navbar.Link className="text-white" href="/">
+            Home
+          </Navbar.Link>
+          <Navbar.Link className="text-white" href="/library">
+            Library
+          </Navbar.Link>
+          {user.email === 'abdul.mughees009@gmail.com' ? (
+            <Navbar.Link className="text-white" href="/admin">
+              Admin
+            </Navbar.Link>
+          ) : (
+            <></>
+          )}
+        </Navbar.Collapse>
+      </Navbar> */}
     </>
   )
 }
 
-export default Navbar
+export default Nav

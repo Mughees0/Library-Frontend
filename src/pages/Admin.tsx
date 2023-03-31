@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Nav'
 import AdminAuthor from '../components/authorForAdmin/Index'
 import AdminBooks from '../components/bookForAdmin/Index'
 

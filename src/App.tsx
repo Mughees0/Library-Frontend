@@ -4,7 +4,7 @@ import Login from './pages/Login'
 import UserLibrary from './pages/userLibrary'
 import Admin from './pages/Admin'
 import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import Navbar from './components/Nav'
 import { useGoogleData } from './hooks/useGoogleData'
 import Home from './pages/Home'
 
@@ -18,8 +18,8 @@ function App() {
       <div className="flex flex-col min-h-screen bg-gray-900 text-white">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/library" element={<UserLibrary />} />
+          <Route path="/login" element={<Login />} />
           {ADMIN_WHITELIST.includes(user.email) ? (
             <Route path="/admin" element={<Admin />} />
           ) : (
