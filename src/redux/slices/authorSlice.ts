@@ -9,7 +9,7 @@ const initialState: AuthorState = {
 }
 
 export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
-  const res = await fetch(`https://mrbooks.netlify.app/author.json`)
+  const res = await fetch(`http://localhost:5173/author.json`)
   const authors: Author[] = await res.json()
   return {
     authors,

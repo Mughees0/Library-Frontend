@@ -22,7 +22,7 @@ export const returnBook = createAsyncThunk('book/return', async (object: Book) =
 })
 
 export const fetchBooks = createAsyncThunk('books/fetch', async () => {
-  const res = await fetch(`https://mrbooks.netlify.app/books.json`)
+  const res = await fetch(`http://localhost:5173/books.json`)
   const books: Book[] = await res.json()
   return {
     books,
