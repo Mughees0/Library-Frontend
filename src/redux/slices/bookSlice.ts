@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import moment from 'moment'
-import { Book, BookState } from '../../types'
+import { BookReq, BookRes, BookState } from '../../types'
+import axios from 'axios'
+import { UUID } from 'crypto'
 
 const initialState: BookState = {
   isLoading: false,
@@ -8,8 +10,12 @@ const initialState: BookState = {
   msg: '',
   data: []
 }
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${localStorage.getItem('token')}`
+}
 
-export const borrowBook = createAsyncThunk('book/borrow', async (object: Book) => {
+export const borrowBook = createAsyncThunk('book/borrow', async (object: BookReq) => {
   return {
     object
   }
@@ -22,17 +28,41 @@ export const returnBook = createAsyncThunk('book/return', async (object: Book) =
 })
 
 export const fetchBooks = createAsyncThunk('books/fetch', async () => {
-  const res = await fetch(`http://localhost:5173/books.json`)
-  const books: Book[] = await res.json()
+  const res = await axios.get('http://localhost:8080/api/v1/book/all', {
+    headers: headers
+  })
+  const books: BookRes[] = await res.data
+  console.log(books)
+
   return {
     books,
     error: null
   }
 })
 
-export const updateBook = createAsyncThunk('books/update', async (updatedObject: Book) => {
+export const updateBook = createAsyncThunk('books/update', async (updatedObject: BookReq) => {
+  const res = await axios.put(
+    `http://localhost:8080/api/v1/book/update/${updatedObject.id}`,
+    {
+      title: updatedObject.title,
+      isbn: updatedObject.isbn,
+      description: updatedObject.description,
+      authorId: updatedObject.authorId,
+      categoryId: updatedObject.categoryId,
+      publishedDate: updatedObject.publishedDate,
+      publisher: updatedObject.publisher,
+      cover: updatedObject.cover
+    },
+    {
+      headers: headers
+    }
+  )
+  const books: BookRes[] = await res.data
+  console.log(books)
+
   return {
-    updatedObject
+    books,
+    error: null
   }
 })
 
@@ -79,25 +109,6 @@ export const userDataSlice = createSlice({
     // updating book
     builder.addCase(updateBook.fulfilled, (state, action) => {
       state.isLoading = false
-      const updatedBooks = state.data.map((book) => {
-        if (book.id == action.payload.updatedObject.id) {
-          return {
-            ...book,
-            ISBN: action.payload.updatedObject.ISBN,
-            title: action.payload.updatedObject.title,
-            description: action.payload.updatedObject.description,
-            author: action.payload.updatedObject.author,
-            publisher: action.payload.updatedObject.publisher,
-            borrowed: action.payload.updatedObject.borrowed,
-            borrowerId: action.payload.updatedObject.borrowerId,
-            publishedDate: action.payload.updatedObject.publishedDate,
-            borrowDate: action.payload.updatedObject.borrowDate,
-            returnDate: action.payload.updatedObject.returnDate
-          }
-        }
-        return book
-      })
-      state.data = updatedBooks
     })
     // adding book
     builder.addCase(addBook.fulfilled, (state, action) => {

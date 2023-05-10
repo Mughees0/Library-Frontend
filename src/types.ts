@@ -1,15 +1,41 @@
-export type Book = {
-  id: number
-  ISBN: string
+import { UUID } from 'crypto'
+
+export type Decoded = {
+  exp: number
+  iat: number
+  role: string
+  sub: string
+  user_id: string
+  username: string
+}
+export type BookRes = {
+  id: UUID
   title: string
+  isbn: string
   description: string
-  author: string
-  publisher: string
-  borrowed: boolean
-  borrowerId: string
+  author: {
+    id: UUID
+    authorName: string
+    email: string
+    phone: string
+  }
+  category: {
+    id: UUID
+    name: string
+  }
   publishedDate: string
-  borrowDate: string
-  returnDate: string
+  publisher: string
+  cover: string
+}
+export type BookReq = {
+  title: string
+  isbn: string
+  description: string
+  authorId: UUID
+  categoryId: UUID
+  publishedDate: string
+  publisher: string
+  cover: string
 }
 
 export type BookId = {
@@ -20,34 +46,34 @@ export type BookState = {
   isLoading: boolean
   error: null | string
   msg: string
-  data: Book[]
+  data: BookRes[]
 }
 
 export type Borrow = {
   ISBN: string
 }
-export type User = {
-  id: number
-  iss: string
-  nbf: number
-  aud: string
-  sub: string
-  email: string
-  email_verified: boolean
-  azp: string
-  name: string
-  picture: string
-  given_name: string
-  family_name: string
-  iat: number
-  exp: number
-  jti: string
+
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER'
+}
+
+export type UserReq = {
+  username: string
+  password: string
+  role: Role
+}
+export type UserRes = {
+  username: string
+  id: string
+  role: Role
 }
 export type UserState = {
   isLoading: boolean
   error: null | string
+  token: string
   msg: string
-  data: User[]
+  data: UserRes
 }
 
 export type AuthorState = {
@@ -68,6 +94,15 @@ export interface Response {
   credential: string
   select_by: string
 }
+export interface LoginFormProps {
+  handleSignIn: (e: React.FormEvent<HTMLFormElement>) => void
+  handleSignUp: (e: React.FormEvent<HTMLFormElement>) => void
+  usernameText: string
+  setUsernameText: React.Dispatch<React.SetStateAction<string>>
+  passwordText: string
+  setPasswordText: React.Dispatch<React.SetStateAction<string>>
+  setRoles: React.Dispatch<React.SetStateAction<Role>>
+}
 export type BookTableProps = {
   setModalTable: React.Dispatch<React.SetStateAction<boolean>>
   modalTable: boolean
@@ -77,22 +112,18 @@ export type BookTableProps = {
   title: string
   setDescription: React.Dispatch<React.SetStateAction<string>>
   description: string
-  setBookAuthor: React.Dispatch<React.SetStateAction<string>>
-  bookAuthor: string
   setPublisher: React.Dispatch<React.SetStateAction<string>>
   publisher: string
-  setBorrowed: React.Dispatch<React.SetStateAction<string>>
-  borrowed: string
-  setBorrowerId: React.Dispatch<React.SetStateAction<string>>
-  borrowerId: string
+  setCategoryId: React.Dispatch<React.SetStateAction<UUID>>
+  categoryId: UUID
   setPublishedDate: React.Dispatch<React.SetStateAction<string>>
   publishedDate: string
-  setBorrowDate: React.Dispatch<React.SetStateAction<string>>
-  borrowDate: string
-  setReturnDate: React.Dispatch<React.SetStateAction<string>>
-  returnDate: string
   setBtnText: React.Dispatch<React.SetStateAction<string>>
   btnText: string
+  setAuthorId: React.Dispatch<React.SetStateAction<UUID>>
+  authorId: UUID
+  setCover: React.Dispatch<React.SetStateAction<string>>
+  cover: string
 }
 
 export type AuthorTableProps = {
@@ -108,14 +139,15 @@ export type HeaderProps = {
   setFilterText: React.Dispatch<React.SetStateAction<string>>
 }
 export type UserBookTableProps = {
-  Books: Book[]
+  Books: BookRes[]
   token: string
+  ourToken: string
   cover: string
-  handleBorrow(book: Book): void
-  handleReturn(book: Book): void
+  handleBorrow(book: BookRes): void
+  handleReturn(book: BookRes): void
 }
 export type UserBookFilters = {
-  Books: Book[]
+  Books: BookRes[]
   Authors: Author[]
   handleAuthorSearch: (e: React.KeyboardEvent<HTMLInputElement>) => void
   setFilterAuthor: React.Dispatch<React.SetStateAction<string>>

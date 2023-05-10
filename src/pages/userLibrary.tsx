@@ -25,7 +25,8 @@ const userLibrary = () => {
   const [filterAuthor, setFilterAuthor] = useState('')
   const Books = useSelector((state: RootState) => state.bookData.data)
   const Authors = useSelector((state: RootState) => state.authorData.data)
-  const [user, token] = useGoogleData()
+  const { data, token } = useSelector((state: RootState) => state.userData)
+  const [user, ourToken] = useGoogleData()
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const userLibrary = () => {
       <main className="flex items-start w-screen justify-center min-h-screen flex-wrap-reverse sm:flex-nowrap">
         <BookTable
           token={token}
+          ourToken={ourToken}
           cover={cover}
           handleBorrow={handleBorrow}
           handleReturn={handleReturn}

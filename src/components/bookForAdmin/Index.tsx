@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store'
 import { addBook, deleteBook, fetchBooks, updateBook } from '../../redux/slices/bookSlice'
-import { Book } from '../../types'
+import { Book, BookReq, BookRes } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
 import BookTable from './Form'
+import { UUID } from 'crypto'
 
 const AdminBooks = () => {
   const Books = useSelector((state: RootState) => state.bookData.data)
@@ -15,48 +16,41 @@ const AdminBooks = () => {
   }, [])
 
   //Books
-  const [id, setId] = useState(0)
+  const [id, setId] = useState<UUID>()
   const [isbn, setIsbn] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [bookAuthor, setBookAuthor] = useState('')
+  const [authorId, setAuthorId] = useState<UUID>()
+  const [categoryId, setCategoryId] = useState<UUID>()
   const [publisher, setPublisher] = useState('')
-  const [borrowed, setBorrowed] = useState('false')
-  const [borrowerId, setBorrowerId] = useState('')
+  const [cover, setCover] = useState('')
   const [publishedDate, setPublishedDate] = useState('')
-  const [borrowDate, setBorrowDate] = useState('')
-  const [returnDate, setReturnDate] = useState('')
   const [btnText, setBtnText] = useState('Submit')
   const [modalTable, setModalTable] = useState(false)
 
-  const borrow = borrowed === 'false' ? false : true
   const bookInput: Book = {
     id: id,
-    ISBN: isbn,
     title: title,
+    isbn: isbn,
     description: description,
-    author: bookAuthor,
-    publisher: publisher,
-    borrowed: borrow,
-    borrowerId: borrowerId,
+    authorId: authorId,
+    categoryId: categoryId,
     publishedDate: publishedDate,
-    borrowDate: borrowDate,
-    returnDate: returnDate
+    publisher: publisher,
+    cover: cover
   }
 
-  function handleUpdate(object: Book): void {
-    setId(object.id)
-    setIsbn(object.ISBN)
-    setTitle(object.title)
-    setDescription(object.description)
-    setBookAuthor(object.author)
-    setPublisher(object.publisher)
-    setBorrowed('true')
-    setBorrowerId(object.borrowerId)
-    setPublishedDate(object.publishedDate)
-    setBorrowDate(object.borrowDate)
-    setReturnDate(object.returnDate)
-    setBtnText('UPDATE')
+  function handleUpdate(object: BookRes): void {
+    setId(object.id),
+      setTitle(object.title),
+      setIsbn(object.isbn),
+      setDescription(object.description),
+      setAuthorId(object.author.id),
+      setCategoryId(object.category.id),
+      setPublishedDate(object.publishedDate),
+      setPublisher(object.publisher),
+      setCover(object.cover),
+      setBtnText('UPDATE')
   }
 
   function handleDelete(id: number): void {
@@ -64,19 +58,16 @@ const AdminBooks = () => {
     toast.success('Successfully Deleted!')
   }
 
-  function handleAdd(object: Book): void {
-    setId(Date.now())
-    setIsbn(object.ISBN)
-    setTitle(object.title)
-    setDescription(object.description)
-    setBookAuthor(object.author)
-    setPublisher(object.publisher)
-    setBorrowed('true')
-    setBorrowerId(object.borrowerId)
-    setPublishedDate(object.publishedDate)
-    setBorrowDate(object.borrowDate)
-    setReturnDate(object.returnDate)
-    setBtnText('ADD')
+  function handleAdd(object: BookReq): void {
+    setTitle(object.title),
+      setIsbn(object.isbn),
+      setDescription(object.description),
+      setAuthorId(object.authorId),
+      setCategoryId(object.categoryId),
+      setPublishedDate(object.publishedDate),
+      setPublisher(object.publisher),
+      setCover(object.cover),
+      setBtnText('ADD')
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -87,6 +78,7 @@ const AdminBooks = () => {
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
       toast.success('Successfully Update!')
+      location.reload()
     } else {
       toast('Please select an option, Add or update')
     }
@@ -116,26 +108,22 @@ const AdminBooks = () => {
               <BookTable
                 setModalTable={setModalTable}
                 modalTable={modalTable}
+                setAuthorId={setAuthorId}
+                authorId={authorId}
+                setCategoryId={setCategoryId}
+                categoryId={categoryId}
+                setPublisher={setPublisher}
+                publisher={publisher}
+                setCover={setCover}
+                cover={cover}
                 setIsbn={setIsbn}
                 isbn={isbn}
                 setTitle={setTitle}
                 title={title}
                 setDescription={setDescription}
                 description={description}
-                setBookAuthor={setBookAuthor}
-                bookAuthor={bookAuthor}
-                setPublisher={setPublisher}
-                publisher={publisher}
-                setBorrowed={setBorrowed}
-                borrowed={borrowed}
-                setBorrowerId={setBorrowerId}
-                borrowerId={borrowerId}
                 setPublishedDate={setPublishedDate}
                 publishedDate={publishedDate}
-                setBorrowDate={setBorrowDate}
-                borrowDate={borrowDate}
-                setReturnDate={setReturnDate}
-                returnDate={returnDate}
                 setBtnText={setBtnText}
                 btnText={btnText}
               />
@@ -168,7 +156,7 @@ const AdminBooks = () => {
                     className="rounded-lg border-2 border-gray-600 hover:bg-gray-700 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 w-60 items-start py-4 my-3"
                     key={book.id}>
                     <td className="text-2xl text-white">{book.title}</td>
-                    <td>{book.author}</td>
+                    <td>{book.author.authorName}</td>
                     <td className="pb-4">{book.publishedDate}</td>
                     <td className="">{book.description}</td>
                     <td>

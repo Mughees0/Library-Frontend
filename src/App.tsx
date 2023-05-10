@@ -7,11 +7,31 @@ import Footer from './components/Footer'
 import Navbar from './components/Nav'
 import { useGoogleData } from './hooks/useGoogleData'
 import Home from './pages/Home'
+import jwtDecode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
+import useGoogleLogin from '../hooks/useGoogleLogin'
+import { useEffect, useState } from 'react'
+import { AppDispatch, RootState } from '../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { Decoded } from './types'
+import BookDetails from './pages/BookDetails'
 
 export const ADMIN_WHITELIST = ['abdul.mughees009@gmail.com']
 
 function App() {
   const [user, token] = useGoogleData()
+  const mytoken = localStorage.getItem('token')
+  let decoded: Decoded
+
+  if (mytoken) {
+    decoded = jwtDecode(mytoken)
+    console.log(decoded.role)
+  } else {
+    decoded = jwtDecode(
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdWdoZWVzMSIsInJvbGUiOiJVU0VSIiwidXNlcl9pZCI6IjlhOWNjYTUxLWE3MDAtNDA5ZS1hY2I4LTZjZDgxMmJkZThiMCIsImV4cCI6MTY4MzczNjg4OSwiaWF0IjoxNjgzNzAwODg5LCJ1c2VybmFtZSI6Im11Z2hlZXMxIn0.rKcl6rPecmoLC_Yh9sPTghzVYV8sHtyouGJjXcEkBDA'
+    )
+    console.log(decoded.role)
+  }
 
   return (
     <BrowserRouter>
@@ -20,7 +40,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<UserLibrary />} />
           <Route path="/login" element={<Login />} />
-          {ADMIN_WHITELIST.includes(user.email) ? (
+          <Route path="/book/:bookId" element={<BookDetails />} />
+          {decoded.role == 'ADMIN' || user.email == 'abdul.mughees009@gmail.com' ? (
             <Route path="/admin" element={<Admin />} />
           ) : (
             <Route

@@ -1,7 +1,17 @@
 import { ToastContainer } from 'react-toastify'
 import { UserBookTableProps } from '../../types'
+import { useNavigate } from 'react-router-dom'
 
-const BookTable = ({ Books, token, cover, handleBorrow, handleReturn }: UserBookTableProps) => {
+const BookTable = ({
+  Books,
+  token,
+  ourToken,
+  cover,
+  handleBorrow,
+  handleReturn
+}: UserBookTableProps) => {
+  const navigate = useNavigate()
+
   return (
     <section className=" bg-gray-700 text-white w-4/6 py-5 my-12 mx-12 flex flex-col items-center rounded-lg">
       <table className="w-4/5 ">
@@ -16,20 +26,23 @@ const BookTable = ({ Books, token, cover, handleBorrow, handleReturn }: UserBook
           {Books.map((book) => {
             return (
               <tr
+                onClick={() => navigate(`/book/${book.id}`)}
                 className=" border-gray-400 border-2 p-5 rounded-md my-2 flex flex-wrap  gap-3 justify-center lg:justify-between hover:bg-gray-900 hover:shadow-2xl hover:transition-all lg:flex-nowrap"
                 key={book.id}>
                 <td className=" w-40">
-                  <img src={cover} alt="Book Cover" />
+                  <img src={book.cover} alt="Book Cover" />
                 </td>
                 <td className="gap-1 flex flex-col  items-start flex-wrap md:items-start lg:w-4/5 ">
                   <h2 className="text-3xl font-bookHead">{book.title}</h2>
-                  <p className="font-nav pt-3">{book.author}</p>
+                  <p className="font-nav pt-3">{book.description}</p>
                   <p className="pb-4 font-bookDesc">{book.publishedDate}</p>
-                  <p className=" text-left pb-2 font-bookDesc text-gray-300">{book.description}</p>
-                  {token ? (
+                  <p className=" text-left pb-2 font-bookDesc text-gray-300">
+                    {book.category.name}
+                  </p>
+                  {/* {token && ourToken ? (
                     <>
                       <div>
-                        {book.borrowed ? (
+                        {book. ? (
                           <p className="text-custom-orange font-medium font-bookDesc">
                             Not Available, Return Date: {book.returnDate}
                           </p>
@@ -83,7 +96,7 @@ const BookTable = ({ Books, token, cover, handleBorrow, handleReturn }: UserBook
                     </>
                   ) : (
                     <></>
-                  )}
+                  )} */}
                 </td>
               </tr>
             )

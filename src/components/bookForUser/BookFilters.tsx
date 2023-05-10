@@ -73,9 +73,9 @@ const BookFilters = ({ Books, Authors, handleAuthorSearch, setFilterAuthor }: Us
                     <div className="flex items-center pl-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                       <label
                         htmlFor="checkbox-item-15"
-                        onClick={() => dispatch(filterBookByAuthor(book.author))}
+                        onClick={() => dispatch(filterBookByAuthor(book.author.authorName))}
                         className="w-full py-2 ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
-                        {book.author}
+                        {book.author.authorName}
                       </label>
                       <label
                         className=" hover:text-red-500 text-md pr-3"

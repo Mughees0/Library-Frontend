@@ -16,8 +16,8 @@
     "@reduxjs/toolkit": "^1.9.3",
     "@types/gapi.auth2": "^0.0.57",
     "@types/gsi": "^0.0.0",
-    "@types/node": "^18.15.11",
     "@types/yargs": "^17.0.24",
+    "axios": "^1.4.0",
     "flowbite": "^1.6.4",
     "flowbite-react": "^0.4.2",
     "googleapis": "^114.0.0",
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@types/google.maps": "^3.52.4",
+    "@types/node": "^20.1.1",
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.55.0",

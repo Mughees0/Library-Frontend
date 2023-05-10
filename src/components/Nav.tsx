@@ -1,13 +1,33 @@
-import useGoogleData from '../hooks/useGoogleData'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import useGoogleLogin from '../hooks/useGoogleLogin'
 // import { Avatar, Dropdown, Navbar } from 'flowbite-react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useGoogleData } from '../hooks/useGoogleData'
+import jwtDecode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
+import useGoogleLogin from '../hooks/useGoogleLogin'
+import { useEffect, useState } from 'react'
+import { AppDispatch, RootState } from '../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { Decoded } from '../types'
 
 const Nav = () => {
   const navigate = useNavigate()
   const google = useGoogleLogin()
   const [user, token] = useGoogleData()
+
+  const mytoken = localStorage.getItem('token')
+  let decoded: Decoded
+
+  if (mytoken) {
+    decoded = jwtDecode(mytoken)
+    console.log(decoded.role)
+  } else {
+    decoded = jwtDecode(
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdWdoZWVzMSIsInJvbGUiOiJVU0VSIiwidXNlcl9pZCI6IjlhOWNjYTUxLWE3MDAtNDA5ZS1hY2I4LTZjZDgxMmJkZThiMCIsImV4cCI6MTY4MzczNjg4OSwiaWF0IjoxNjgzNzAwODg5LCJ1c2VybmFtZSI6Im11Z2hlZXMxIn0.rKcl6rPecmoLC_Yh9sPTghzVYV8sHtyouGJjXcEkBDA'
+    )
+    console.log(decoded.role)
+  }
 
   return (
     <>
@@ -99,7 +119,7 @@ const Nav = () => {
                   Library
                 </Link>
               </li>
-              {user.email === 'abdul.mughees009@gmail.com' ? (
+              {decoded.role == 'ADMIN' || user.email === 'abdul.mughees009@gmail.com' ? (
                 <li>
                   <Link
                     className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-400 md:p-0  "

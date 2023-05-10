@@ -4,26 +4,22 @@ import { BookTableProps } from '../../types'
 const BookTable = ({
   setModalTable,
   modalTable,
+  setAuthorId,
+  authorId,
+  setCategoryId,
+  categoryId,
+  setPublisher,
+  publisher,
+  setCover,
+  cover,
   setIsbn,
   isbn,
   setTitle,
   title,
   setDescription,
   description,
-  setBookAuthor,
-  bookAuthor,
-  setPublisher,
-  publisher,
-  setBorrowed,
-  borrowed,
-  setBorrowerId,
-  borrowerId,
   setPublishedDate,
   publishedDate,
-  setBorrowDate,
-  borrowDate,
-  setReturnDate,
-  returnDate,
   setBtnText,
   btnText
 }: BookTableProps) => {
@@ -46,6 +42,19 @@ const BookTable = ({
             </tr>
           </thead>
           <tbody className="flex flex-col gap-3 items-center ">
+            <tr className="flex justify-between w-80">
+              <td>Book Cover</td>
+              <td>
+                <input
+                  onChange={(e) => setCover(e.target.value)}
+                  value={cover}
+                  id="cover"
+                  type="text"
+                  className="text-black rounded-lg border-none hover:bg-gray-200 "
+                  required
+                />
+              </td>
+            </tr>
             <tr className="flex justify-between w-80">
               <td>ISBN</td>
               <td>
@@ -78,7 +87,7 @@ const BookTable = ({
                 <input
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
-                  id="discription"
+                  id="description"
                   type="text"
                   className="text-black rounded-lg border-none hover:bg-gray-200 "
                   required
@@ -86,12 +95,12 @@ const BookTable = ({
               </td>
             </tr>
             <tr className="flex justify-between w-80">
-              <td>Author</td>
+              <td>AuthorId</td>
               <td>
                 <input
-                  onChange={(e) => setBookAuthor(e.target.value)}
-                  value={bookAuthor}
-                  id="author"
+                  onChange={(e) => setAuthorId(e.target.value)}
+                  value={authorId}
+                  id="authorId"
                   type="text"
                   className="text-black rounded-lg border-none hover:bg-gray-200 "
                   required
@@ -112,7 +121,7 @@ const BookTable = ({
                 />
               </td>
             </tr>
-            <tr className="flex justify-between w-80">
+            {/* <tr className="flex justify-between w-80">
               <td>Borrowed</td>
               <td>
                 <select
@@ -127,20 +136,20 @@ const BookTable = ({
                   <option value="false">False</option>
                 </select>
               </td>
-            </tr>
+            </tr> */}
             <tr className="flex justify-between w-80">
-              <td>Borrower Id</td>
+              <td>Category Id</td>
               <td>
                 <input
-                  onChange={(e) => setBorrowerId(e.target.value)}
-                  value={borrowerId}
-                  id="borrowerId"
+                  onChange={(e) => setCategoryId(e.target.value)}
+                  value={categoryId}
+                  id="categoryId"
                   className="text-black rounded-lg border-none hover:bg-gray-200 "
                   type="text"
                 />
               </td>
             </tr>
-            <tr className="flex justify-between w-80">
+            {/* <tr className="flex justify-between w-80">
               <td>Publish Date</td>
               <td>
                 <input
@@ -152,8 +161,8 @@ const BookTable = ({
                   required
                 />
               </td>
-            </tr>
-            <tr className="flex justify-between w-80">
+            </tr> */}
+            {/* <tr className="flex justify-between w-80">
               <td>Borrow Date</td>
               <td>
                 <input
@@ -164,8 +173,8 @@ const BookTable = ({
                   type="date"
                 />
               </td>
-            </tr>
-            <tr className="flex justify-between w-80">
+            </tr> */}
+            {/* <tr className="flex justify-between w-80">
               <td>Return Date</td>
               <td>
                 <input
@@ -176,7 +185,7 @@ const BookTable = ({
                   type="date"
                 />
               </td>
-            </tr>
+            </tr> */}
             <tr className="flex justify-center w-80">
               <td>
                 <input
