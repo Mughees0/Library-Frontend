@@ -7,7 +7,6 @@ const Home = () => {
   const navigate = useNavigate()
   return (
     <>
-      <Navbar />
       <div className="flex h-screen w-screen justify-center items-center bg-[url('/src/assets/lib.jpg')] bg-cover">
         <button
           onClick={() => navigate('/library')}

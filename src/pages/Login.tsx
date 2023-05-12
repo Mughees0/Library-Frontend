@@ -12,7 +12,6 @@ import LoginForm from '../components/LoginForm'
 const Login = () => {
   const google = useGoogleLogin()
   const [user, ourToken] = useGoogleData()
-
   const navigate = useNavigate()
   const [roles, setRoles] = useState<Role>()
   const [usernameText, setUsernameText] = useState('')
@@ -51,7 +50,6 @@ const Login = () => {
       ) : (
         <>{navigate('/')}</>
       )}
-      <Footer />
     </>
   )
 }

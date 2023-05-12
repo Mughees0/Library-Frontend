@@ -1,4 +1,5 @@
 import { UUID } from 'crypto'
+import { type } from 'os'
 
 export type Decoded = {
   exp: number
@@ -27,7 +28,42 @@ export type BookRes = {
   publisher: string
   cover: string
 }
+
+export type BorrowRes = {
+  id: string
+  user: {
+    id: string
+    username: string
+    role: string
+  }
+  bookCopy: {
+    id: string
+    book: {
+      id: string
+      title: string
+      description: string
+      author: {
+        id: string
+        authorName: string
+        email: string
+        phone: string
+      }
+      category: {
+        id: string
+        name: string
+      }
+      publishedDate: string
+      publisher: string
+      cover: string
+    }
+    status: false
+  }
+  borrowDate: string
+  returnDate: string
+}
+
 export type BookReq = {
+  id?: UUID
   title: string
   isbn: string
   description: string
@@ -41,18 +77,56 @@ export type BookReq = {
 export type BookId = {
   id: number
 }
+export type BorrowReq = {
+  userId: UUID
+  bookId: UUID
+}
+export type ReturnReq = {
+  userId: UUID
+  bookCopyId: UUID
+}
 
 export type BookState = {
   isLoading: boolean
   error: null | string
   msg: string
-  data: BookRes[]
+  book: BookRes
+  books: BookRes[]
+  borrowedBook: BorrowRes
+  borrowedBooks: BorrowRes[]
+  bookCopies: CopyRes[]
 }
 
 export type Borrow = {
   ISBN: string
 }
-
+export type CopyReq = {
+  bookId: string
+  quantity: number
+  status: boolean
+}
+export type CopyRes = {
+  id: string
+  book: {
+    id: string
+    title: string
+    description: string
+    author: {
+      id: string
+      authorName: string
+      email: string
+      phone: string
+    }
+    category: {
+      id: string
+      name: string
+    }
+    publishedDate: string
+    publisher: string
+    cover: string
+  }
+  status: false
+}
 export enum Role {
   ADMIN = 'ADMIN',
   USER = 'USER'

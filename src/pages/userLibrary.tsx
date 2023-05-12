@@ -23,7 +23,7 @@ import ReactPaginate from 'react-paginate'
 const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
   const [filterAuthor, setFilterAuthor] = useState('')
-  const Books = useSelector((state: RootState) => state.bookData.data)
+  const Books = useSelector((state: RootState) => state.bookData.books)
   const Authors = useSelector((state: RootState) => state.authorData.data)
   const { data, token } = useSelector((state: RootState) => state.userData)
   const [user, ourToken] = useGoogleData()
@@ -67,7 +67,6 @@ const userLibrary = () => {
   }
   return (
     <>
-      <Navbar />
       <Header handleKeyPress={handleKeyPress} setFilterText={setFilterText} />
       <main className="flex items-start w-screen justify-center min-h-screen flex-wrap-reverse sm:flex-nowrap">
         <BookTable

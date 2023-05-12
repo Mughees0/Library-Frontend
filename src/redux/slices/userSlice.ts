@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import moment from 'moment'
-import { Book, Role, UserReq, UserRes, UserState } from '../../types'
+import { Role, UserReq, UserRes, UserState } from '../../types'
 import axios from 'axios'
+import jwtDecode from 'jwt-decode'
+import { getDecodedTokenFromStorage } from '../../utils/token'
 
 const initialState: UserState = {
   isLoading: false,
@@ -35,66 +37,54 @@ export const userSignin = createAsyncThunk('user/signin', async (object: UserReq
     password: object.password,
     role: object.role
   })
-  const user: string = await res.data
-  console.log(user)
+  const token: string = await res.data
+  console.log(token)
 
   return {
-    user
+    token
   }
 })
 
-export const fetchBooks = createAsyncThunk('books/fetch', async () => {
-  const res = await fetch(`http://localhost:8080/api/v1/book/all`)
-  const books: Book[] = await res.json()
-  console.log(books)
+// export const fetchBooks = createAsyncThunk('books/fetch', async () => {
+//   const res = await fetch(`http://localhost:8080/api/v1/book/all`)
+//   const books: [] = await res.json()
+//   console.log(books)
 
-  return {
-    books,
-    error: null
-  }
-})
-
-export const updateBook = createAsyncThunk('books/update', async (updatedObject: Book) => {
-  return {
-    updatedObject
-  }
-})
-
-export const addBook = createAsyncThunk('books/add', async (addedObject: Book) => {
-  return {
-    addedObject
-  }
-})
-
-export const filterBookByName = createAsyncThunk('books/filterName', async (name: string) => {
-  return {
-    name
-  }
-})
-export const filterBookByAuthor = createAsyncThunk('books/filterAuthor', async (name: string) => {
-  return {
-    name
-  }
-})
-
-export const deleteBook = createAsyncThunk('books/delete', async (id: number) => {
-  return {
-    id
-  }
-})
+//   return {
+//     books,
+//     error: null
+//   }
+// })
 
 export const userSlice = createSlice({
   name: 'userData',
   initialState,
-  reducers: {},
+  reducers: {
+    loadUserFromStorage: (state) => {
+      const user = getDecodedTokenFromStorage()
+      if (user) {
+        state.data = user
+      }
+    }
+  },
   extraReducers: (builder) => {
     // fetching data
     builder.addCase(userSignup.fulfilled, (state, action) => {
       state.data = action.payload.user
     })
     builder.addCase(userSignin.fulfilled, (state, action) => {
-      state.token = action.payload.user
-      localStorage.setItem('token', state.token)
+      const token = action.payload.token
+      const decodedUser = jwtDecode(token) as UserRes
+      localStorage.setItem('token', token)
+
+      const user: UserRes = {
+        username: decodedUser.username,
+        id: decodedUser.id,
+        role: decodedUser.role
+      }
+      state.token = action.payload.token
+      localStorage.setItem('token', action.payload.token)
+      state.data = user
     })
   }
 })

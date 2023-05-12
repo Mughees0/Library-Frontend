@@ -15,6 +15,8 @@ import { AppDispatch, RootState } from '../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { Decoded } from './types'
 import BookDetails from './pages/BookDetails'
+import UserProfile from './pages/UserProfile'
+import BookCopies from './pages/BookCopies'
 
 export const ADMIN_WHITELIST = ['abdul.mughees009@gmail.com']
 
@@ -36,13 +38,18 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<UserLibrary />} />
           <Route path="/login" element={<Login />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
           {decoded.role == 'ADMIN' || user.email == 'abdul.mughees009@gmail.com' ? (
-            <Route path="/admin" element={<Admin />} />
+            <Route>
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/copies" element={<BookCopies />} />
+              <Route path="/user/:userId" element={<UserProfile />} />
+            </Route>
           ) : (
             <Route
               path="/admin"

@@ -8,7 +8,7 @@ import BookTable from './Form'
 import { UUID } from 'crypto'
 
 const AdminBooks = () => {
-  const Books = useSelector((state: RootState) => state.bookData.data)
+  const Books = useSelector((state: RootState) => state.bookData.books)
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
