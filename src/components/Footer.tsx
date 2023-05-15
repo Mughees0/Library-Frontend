@@ -12,8 +12,8 @@ const Footer = () => {
     //   </ul>
     // </footer>
 
-    <footer className=" rounded-lg shadow m-4 border-2 border-gray-400 dark:bg-gray-800">
-      <div className="w-full mx-auto text-gray-200 max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+    <footer className=" rounded-lg shadow border-2 border-gray-400 bg-gray-800 fixed left-0 bottom-0 w-screen dark:bg-gray-800">
+      <div className=" text-gray-200 p-4 md:flex md:items-center md:justify-between">
         <span className="text-sm  sm:text-center dark:text-gray-400">
           © 2023{' '}
           <a href="/" className="hover:underline">

@@ -58,7 +58,7 @@ const AdminAuthor = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-9 min-h-screen items-center justify-around">
+      <div className="flex flex-col gap-9 items-center justify-around">
         <section className="outline  w-screen flex flex-col gap-20 justify-between"></section>
         {/* Author form */}
         <section className="  w-screen flex flex-col justify-between">
@@ -91,73 +91,77 @@ const AdminAuthor = () => {
             <></>
           )}
           {/* Author Table  */}
-          <table className=" text-gray-300 ">
-            <thead>
-              <tr className="flex flex-col justify-center items-center flex-wrap">
-                <th className="text-2xl py-5 text-white">Authors</th>
-                <td>
-                  <button
-                    className="rounded-full text-yellow-300 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
-                    onClick={() => {
-                      handleAuthorAdd(authorItem)
-                      setAuthorModalTable(!authorModalTable)
-                    }}>
-                    Click here to add an author
-                  </button>
-                </td>
-              </tr>
-            </thead>
-            <tbody className="flex flex-wrap gap-5 justify-center">
-              {author.map((author) => {
-                return (
-                  <tr
-                    className="rounded-lg border-2 border-gray-600 hover:bg-gray-700 hover:shadow-2xl hover:transition-all flex flex-col px-9 gap-1 items-start py-4 my-3"
-                    key={author.id}>
-                    <td className="text-2xl text-white ">{author.name}</td>
-                    <td>
-                      <button
-                        className="rounded-full text-yellow-200 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
-                        onClick={() => {
-                          handleAuthorUpdate(author)
-                          setAuthorModalTable(!authorModalTable)
-                        }}>
-                        Update
-                      </button>
-                      <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                      />
-                    </td>
-                    <td>
-                      <button
-                        className="rounded-full text-red-400 hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
-                        onClick={() => handleAuthorDelete(author.id)}>
-                        Delete
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="rounded-full hover:bg-green-700 hover:shadow-2xl hover:transition-all bg-green-500 px-4"
-                        onClick={() => {
-                          handleAuthorAdd(author)
-                          setAuthorModalTable(!authorModalTable)
-                        }}>
-                        Copy author data
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h2 className=" text-3xl pb-2">Authors</h2>
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {author.map((author) => {
+                  return (
+                    <tr
+                      key={author.id}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th
+                        scope="row"
+                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                        <div className="pl-3">
+                          <div className="text-base font-semibold">{author.name}</div>
+                        </div>
+                      </th>
+                      <td className="px-6 py-4">
+                        <ToastContainer
+                          position="top-right"
+                          autoClose={5000}
+                          hideProgressBar={true}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                          theme="light"
+                        />
+                        <button
+                          className="font-medium text-blue-600 dark:text-blue-500 pr-3 hover:underline"
+                          onClick={() => {
+                            handleAuthorUpdate(author)
+                            setAuthorModalTable(!authorModalTable)
+                          }}>
+                          Edit
+                        </button>
+                        <button
+                          className="font-medium text-red-600 dark:text-blue-500 hover:underline"
+                          onClick={() => handleAuthorDelete(author.id)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+                <tr>
+                  <td className="px-6 py-4">
+                    <button
+                      className=" font-medium text-lg text-green-400 dark:text-blue-500 hover:underline"
+                      onClick={() => {
+                        handleAuthorAdd(authorItem)
+                        setAuthorModalTable(!authorModalTable)
+                      }}>
+                      Click here to add a new Author
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     </>

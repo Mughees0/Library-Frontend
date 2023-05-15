@@ -94,7 +94,7 @@ export type BookState = {
   books: BookRes[]
   borrowedBook: BorrowRes
   borrowedBooks: BorrowRes[]
-  bookCopies: CopyRes[]
+  bookCopies: CopyRes[] | number
 }
 
 export type Borrow = {

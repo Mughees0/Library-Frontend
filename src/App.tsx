@@ -38,11 +38,13 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<UserLibrary />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
           {decoded.role == 'ADMIN' || user.email == 'abdul.mughees009@gmail.com' ? (
             <Route>

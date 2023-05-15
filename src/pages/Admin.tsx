@@ -6,7 +6,7 @@ import AdminBooks from '../components/bookForAdmin/Index'
 const Admin = () => {
   const navigate = useNavigate()
   return (
-    <div>
+    <main>
       <button
         onClick={() => navigate('/admin/copies')}
         className=" bg-red-500 px-5 py-2 rounded-r-full">
@@ -14,7 +14,7 @@ const Admin = () => {
       </button>
       <AdminBooks />
       <AdminAuthor />
-    </div>
+    </main>
   )
 }
 

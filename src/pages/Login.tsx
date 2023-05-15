@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <>
       {!token && !ourToken ? (
-        <div className="bg-yellow flex flex-col justify-center items-center h-screen w-screen">
+        <div className=" flex flex-col justify-center items-center h-screen ">
           <LoginForm
             handleSignUp={handleSignup}
             handleSignIn={handleSignin}
@@ -44,8 +44,7 @@ const Login = () => {
             setPasswordText={setPasswordText}
             setRoles={setRoles}
           />
-          <div id="signIn"></div>
-          {/* <button id="signIn"></button> */}
+          {/* <div id="signIn"></div> */}
         </div>
       ) : (
         <>{navigate('/')}</>

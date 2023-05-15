@@ -178,6 +178,32 @@ export const fetchBookCopies = createAsyncThunk('books/fetchCopies', async (id: 
     throw error
   }
 })
+export const deleteBookCopies = createAsyncThunk('books/deleteCopies', async (id: UUID) => {
+  try {
+    const res = await api.delete(`/bookcopy/delete/${id}`)
+    const msg: string = await res.data
+    console.log(msg)
+    return {
+      msg
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
+  }
+})
+export const countBookCopies = createAsyncThunk('books/countCopies', async (id: UUID) => {
+  try {
+    const res = await api.get(`/bookcopy/countAll/${id}`)
+    const copies: number = await res.data
+    console.log(copies)
+    return {
+      copies
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
+  }
+})
 
 export const updateBook = createAsyncThunk('books/update', async (updatedObject: BookReq) => {
   try {
@@ -279,6 +305,11 @@ export const userDataSlice = createSlice({
       state.isLoading = false
       state.bookCopies = action.payload.copies
     })
+    // Count book copies
+    builder.addCase(countBookCopies.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.bookCopies = action.payload.copies
+    })
     builder.addCase(fetchBook.fulfilled, (state, action) => {
       state.isLoading = false
       state.book = action.payload.book
@@ -312,17 +343,17 @@ export const userDataSlice = createSlice({
     // filtering data
     builder.addCase(filterBookByName.fulfilled, (state, action) => {
       state.isLoading = false
-      const filterByName = state.data.filter((d) => {
+      const filterByName = state.books.filter((d) => {
         return d.title.toLowerCase().includes(action.payload.name.toLowerCase())
       })
-      state.data = filterByName
+      state.books = filterByName
     })
     builder.addCase(filterBookByAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      const filterByAuthor = state.data.filter((d) => {
+      const filterByAuthor = state.books.filter((d) => {
         return d.author.toLowerCase().includes(action.payload.name.toLowerCase())
       })
-      state.data = filterByAuthor
+      state.books = filterByAuthor
     })
     // borrow update
     builder.addCase(borrowBook.fulfilled, (state, action) => {
