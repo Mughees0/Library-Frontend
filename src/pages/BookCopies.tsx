@@ -24,7 +24,7 @@ function BookCopies() {
 
   return (
     <main className="h-screen bg-[url('/src/assets/lib-3.jpg')] bg-cover">
-      <h2 className="text-center text-3xl text-black font-bold m-5">Manage Books</h2>
+      <h2 className="text-center text-2xl text-white m-5">Manage Books</h2>
       <section className="relative overflow-x-auto shadow-md m-10 sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700  uppercase bg-yellow-400 dark:bg-gray-700 dark:text-gray-400">
