@@ -14,7 +14,7 @@ const AdminBooks = () => {
 
   useEffect(() => {
     dispatch(fetchBooks())
-  }, [])
+  }, [Books])
 
   //Books
   const [id, setId] = useState<UUID>()
@@ -79,7 +79,6 @@ const AdminBooks = () => {
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
       toast.success('Successfully Update!')
-      location.reload()
     } else {
       toast('Please select an option, Add or update')
     }

@@ -158,6 +158,14 @@ export type AuthorState = {
   author: Author
 }
 
+export type CategoryState = {
+  isLoading: boolean
+  error: null | string
+  msg: string
+  categories: Category[]
+  category: Category
+}
+
 export type Author = {
   id: UUID
   authorName: string
@@ -170,6 +178,11 @@ export interface Response {
   client_id: string
   credential: string
   select_by: string
+}
+
+export type Category = {
+  id: UUID
+  name: string
 }
 export interface LoginFormProps {
   handleSignIn: (e: React.FormEvent<HTMLFormElement>) => void
@@ -214,6 +227,15 @@ export type AuthorTableProps = {
   phone: string
   setEmail: React.Dispatch<React.SetStateAction<string>>
   setPhone: React.Dispatch<React.SetStateAction<string>>
+}
+
+export type CategoryTableProps = {
+  setCategoryModalTable: React.Dispatch<React.SetStateAction<boolean>>
+  categoryModalTable: boolean
+  setCategoryName: React.Dispatch<React.SetStateAction<string>>
+  categoryName: string
+  categoryBtnText: string
+  setCategoryBtnText: React.Dispatch<React.SetStateAction<string>>
 }
 export type HeaderProps = {
   handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void
