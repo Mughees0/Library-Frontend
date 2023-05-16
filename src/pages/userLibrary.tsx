@@ -24,7 +24,7 @@ const userLibrary = () => {
   const [filterText, setFilterText] = useState('')
   const [filterAuthor, setFilterAuthor] = useState('')
   const Books = useSelector((state: RootState) => state.bookData.books)
-  const Authors = useSelector((state: RootState) => state.authorData.data)
+  const Authors = useSelector((state: RootState) => state.authorData.auhtors)
   const { data, token } = useSelector((state: RootState) => state.userData)
   const [user, ourToken] = useGoogleData()
   const dispatch = useDispatch<AppDispatch>()
@@ -87,7 +87,7 @@ const userLibrary = () => {
       <div className="flex flex-col items-center">
         <ReactPaginate
           breakLabel="..."
-          containerClassName="  flex items-center mt-2 xs:mt-0"
+          containerClassName=" mb-24 flex items-center mt-2 xs:mt-0"
           nextLinkClassName="px-4 py-2 text-sm font-medium text-white border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 bg-gray-600"
           nextLabel="next ->"
           onPageChange={(e) => handlePageClick(e)}
