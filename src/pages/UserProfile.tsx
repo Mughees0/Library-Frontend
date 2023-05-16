@@ -7,21 +7,21 @@ import { borrowedBooks, returnBook } from '../redux/slices/bookSlice'
 function UserProfile() {
   const Books = useSelector((state: RootState) => state.bookData.borrowedBooks)
   const dispatch = useDispatch<AppDispatch>()
-
   const { userId } = useParams()
 
   useEffect(() => {
     dispatch(borrowedBooks(userId))
-  }, [userId])
+  }, [userId, Books])
   function handleReturn(id: string) {
     dispatch(returnBook({ userId: userId, bookCopyId: id }))
   }
 
   return (
-    <main className=" h-screen bg-gray-600 ">
-      <section className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <main className=" h-screen bg-[url('/src/assets/library21.jpg')] bg-cover">
+      <h2 className="text-center text-2xl m-5">Borrowed Books</h2>
+      <section className="relative overflow-x-auto shadow-md m-10 sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead className="text-xs text-gray-700  uppercase bg-yellow-400 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Your Borrowed Books
@@ -55,7 +55,6 @@ function UserProfile() {
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         handleReturn(book.bookCopy.id)
-                        location.reload()
                       }}>
                       Return
                     </button>

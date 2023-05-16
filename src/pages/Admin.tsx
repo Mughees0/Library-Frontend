@@ -7,10 +7,10 @@ import AdminCategory from '../components/categoryAdmin/Index'
 const Admin = () => {
   const navigate = useNavigate()
   return (
-    <main>
+    <main className="bg-[url('/src/assets/lib.jpg')] bg-cover">
       <button
         onClick={() => navigate('/admin/copies')}
-        className=" bg-red-500 px-5 py-2 rounded-r-full">
+        className=" bg-red-500 px-5 py-2 rounded-r-full mt-3">
         MANAGE BOOK COPIES
       </button>
       <AdminBooks />

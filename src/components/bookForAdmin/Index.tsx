@@ -88,11 +88,11 @@ const AdminBooks = () => {
   return (
     <>
       <div className="flex flex-col gap-9 py-10 items-center justify-around">
-        <section className=" w-screen flex flex-col gap-20 justify-between">
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <h2 className=" text-3xl pb-2">Books</h2>
+        <section className=" w-screen flex flex-col gap-10 justify-between">
+          <h2 className=" text-3xl ml-10 pb-2">Books</h2>
+          <div className="relative mx-10 overflow-x-auto shadow-md rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-yellow-400 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Title
@@ -157,17 +157,33 @@ const AdminBooks = () => {
                     </tr>
                   )
                 })}
-                <tr>
+                <tr className="bg-gray-100">
                   <td className="px-6 py-4">
                     <button
-                      className=" font-medium text-lg text-green-400 dark:text-blue-500 hover:underline"
+                      className=" font-medium text-lg flex items-center justify-around w-36 text-green-400 dark:text-blue-500 hover:text-yellow-400"
                       onClick={() => {
                         handleAdd(bookInput)
                         setModalTable(!modalTable)
                       }}>
-                      Click here to add a new book
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>{' '}
+                      add new book
                     </button>
                   </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
