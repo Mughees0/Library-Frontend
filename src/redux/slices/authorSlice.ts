@@ -1,36 +1,81 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Author, AuthorState } from '../../types'
+import api from '../../api'
+import { UUID } from 'crypto'
 
 const initialState: AuthorState = {
   isLoading: false,
   error: null,
   msg: '',
-  data: []
+  auhtors: [],
+  author: {
+    id: 0,
+    authorName: '',
+    email: '',
+    phone: ''
+  }
 }
 
 export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
-  const res = await fetch(`http://localhost:5173/author.json`)
-  const authors: Author[] = await res.json()
-  return {
-    authors,
-    error: null
+  try {
+    const res = await api.get(`/author/all`)
+    const authors: Author[] = await res.data
+    console.log(authors)
+    return {
+      authors
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
   }
 })
 
 export const updateAuthor = createAsyncThunk('author/update', async (updatedObject: Author) => {
-  return {
-    updatedObject
+  try {
+    const res = await api.put(`/author/update/${updatedObject.id}`, {
+      authorName: updatedObject.authorName,
+      email: updatedObject.email,
+      phone: updatedObject.phone
+    })
+    const author: Author = await res.data
+    console.log(author)
+    return {
+      author
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
   }
 })
 export const addAuthor = createAsyncThunk('author/add', async (addedObject: Author) => {
-  return {
-    addedObject
+  try {
+    const res = await api.post(`/author/add`, {
+      authorName: addedObject.authorName,
+      email: addedObject.email,
+      phone: addedObject.phone
+    })
+    const author: Author = await res.data
+    console.log(author)
+    return {
+      author
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
   }
 })
 
-export const deleteAuthor = createAsyncThunk('author/delete', async (id: number) => {
-  return {
-    id
+export const deleteAuthor = createAsyncThunk('author/delete', async (id: UUID) => {
+  try {
+    const res = await api.delete(`/author/delete/${id}`)
+    const msg: string = await res.data
+    console.log(msg)
+    return {
+      msg
+    }
+  } catch (error) {
+    console.log('Error:> ', error.message)
+    throw error
   }
 })
 
@@ -49,38 +94,23 @@ export const userDataSlice = createSlice({
     })
     builder.addCase(fetchAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      state.data = action.payload.authors
+      state.auhtors = action.payload.authors
     })
     // updating data
     builder.addCase(updateAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      const updatedAuthors = state.data.map((author) => {
-        if (author.id == action.payload.updatedObject.id) {
-          return {
-            ...author,
-            name: action.payload.updatedObject.name
-          }
-        }
-        return author
-      })
-      state.data = updatedAuthors
+      state.author = action.payload.author
     })
 
     // updating data
     builder.addCase(addAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      const updatedAuthors = [...state.data, action.payload.addedObject]
-      state.data = updatedAuthors
+      state.author = action.payload.author
     })
     // deleting data
     builder.addCase(deleteAuthor.fulfilled, (state, action) => {
       state.isLoading = false
-      const filterById = [...state.data].filter((d) => {
-        if (d.id !== action.payload.id) {
-          return d
-        }
-      })
-      state.data = filterById
+      state.msg = action.payload.msg
     })
   }
 })

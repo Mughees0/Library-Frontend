@@ -7,7 +7,11 @@ const AuthorTable = ({
   setAuthorName,
   authorName,
   authorBtnText,
-  setAuthorBtnText
+  setAuthorBtnText,
+  setEmail,
+  setPhone,
+  email,
+  phone
 }: AuthorTableProps) => {
   return (
     <div>
@@ -33,6 +37,32 @@ const AuthorTable = ({
               <input
                 onChange={(e) => setAuthorName(e.target.value)}
                 value={authorName}
+                id="authorName"
+                className="text-black rounded-lg border-none hover:bg-gray-200 "
+                type="text"
+                required
+              />
+            </td>
+          </tr>
+          <tr className="flex justify-between w-72">
+            <td>Email</td>
+            <td>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                id="authorName"
+                className="text-black rounded-lg border-none hover:bg-gray-200 "
+                type="text"
+                required
+              />
+            </td>
+          </tr>
+          <tr className="flex justify-between w-72">
+            <td>Phone</td>
+            <td>
+              <input
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
                 id="authorName"
                 className="text-black rounded-lg border-none hover:bg-gray-200 "
                 type="text"

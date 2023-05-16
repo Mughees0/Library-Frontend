@@ -6,6 +6,7 @@ import { Book, BookReq, BookRes } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
 import BookTable from './Form'
 import { UUID } from 'crypto'
+import { deleteAuthor } from '../../redux/slices/authorSlice'
 
 const AdminBooks = () => {
   const Books = useSelector((state: RootState) => state.bookData.books)
@@ -53,8 +54,8 @@ const AdminBooks = () => {
       setBtnText('UPDATE')
   }
 
-  function handleDelete(id: number): void {
-    dispatch(deleteBook(id))
+  function handleDelete(id: UUID): void {
+    dispatch(deleteAuthor(id))
     toast.success('Successfully Deleted!')
   }
 
@@ -89,50 +90,6 @@ const AdminBooks = () => {
     <>
       <div className="flex flex-col gap-9 py-10 items-center justify-around">
         <section className=" w-screen flex flex-col gap-20 justify-between">
-          {modalTable ? (
-            <form
-              onSubmit={(e) => handleSubmit(e)}
-              className=" flex flex-col gap-2  items-center absolute top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
-              <BookTable
-                setModalTable={setModalTable}
-                modalTable={modalTable}
-                setAuthorId={setAuthorId}
-                authorId={authorId}
-                setCategoryId={setCategoryId}
-                categoryId={categoryId}
-                setPublisher={setPublisher}
-                publisher={publisher}
-                setCover={setCover}
-                cover={cover}
-                setIsbn={setIsbn}
-                isbn={isbn}
-                setTitle={setTitle}
-                title={title}
-                setDescription={setDescription}
-                description={description}
-                setPublishedDate={setPublishedDate}
-                publishedDate={publishedDate}
-                setBtnText={setBtnText}
-                btnText={btnText}
-              />
-            </form>
-          ) : (
-            <></>
-          )}
-          {/* modal end */}
-          {/* table to display items */}
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <h2 className=" text-3xl pb-2">Books</h2>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -216,6 +173,50 @@ const AdminBooks = () => {
               </tbody>
             </table>
           </div>
+          {modalTable ? (
+            <form
+              onSubmit={(e) => handleSubmit(e)}
+              className=" flex flex-col gap-2 items-center absolute top-0 right-0 bottom-0 left-0 m-auto h-[30rem] w-96 shadow-full">
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
+              <BookTable
+                setModalTable={setModalTable}
+                modalTable={modalTable}
+                setAuthorId={setAuthorId}
+                authorId={authorId}
+                setCategoryId={setCategoryId}
+                categoryId={categoryId}
+                setPublisher={setPublisher}
+                publisher={publisher}
+                setCover={setCover}
+                cover={cover}
+                setIsbn={setIsbn}
+                isbn={isbn}
+                setTitle={setTitle}
+                title={title}
+                setDescription={setDescription}
+                description={description}
+                setPublishedDate={setPublishedDate}
+                publishedDate={publishedDate}
+                setBtnText={setBtnText}
+                btnText={btnText}
+              />
+            </form>
+          ) : (
+            <></>
+          )}
+          {/* modal end */}
+          {/* table to display items */}
         </section>
       </div>
     </>

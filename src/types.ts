@@ -154,12 +154,15 @@ export type AuthorState = {
   isLoading: boolean
   error: null | string
   msg: string
-  data: Author[]
+  auhtors: Author[]
+  author: Author
 }
 
 export type Author = {
-  id: number
-  name: string
+  id: UUID
+  authorName: string
+  email: string
+  phone: string
 }
 
 export interface Response {
@@ -207,6 +210,10 @@ export type AuthorTableProps = {
   authorName: string
   authorBtnText: string
   setAuthorBtnText: React.Dispatch<React.SetStateAction<string>>
+  email: string
+  phone: string
+  setEmail: React.Dispatch<React.SetStateAction<string>>
+  setPhone: React.Dispatch<React.SetStateAction<string>>
 }
 export type HeaderProps = {
   handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void

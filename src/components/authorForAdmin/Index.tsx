@@ -5,9 +5,10 @@ import { addAuthor, deleteAuthor, fetchAuthor, updateAuthor } from '../../redux/
 import { Author } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
 import AuthorTable from './Form'
+import { UUID } from 'crypto'
 
 const AdminAuthor = () => {
-  const author = useSelector((state: RootState) => state.authorData.data)
+  const author = useSelector((state: RootState) => state.authorData.auhtors)
   const dispatch = useDispatch<AppDispatch>()
 
   useEffect(() => {
@@ -17,28 +18,35 @@ const AdminAuthor = () => {
   // Authors
   const [authorId, setAuthorId] = useState(0)
   const [authorName, setAuthorName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [authorBtnText, setAuthorBtnText] = useState('Submit')
   const [authorModalTable, setAuthorModalTable] = useState(false)
 
   const authorItem: Author = {
     id: authorId,
-    name: authorName
+    authorName: authorName,
+    email: email,
+    phone: phone
   }
 
   function handleAuthorUpdate(author: Author) {
     setAuthorId(author.id)
-    setAuthorName(author.name)
+    setAuthorName(author.authorName)
+    setEmail(author.email)
+    setPhone(author.phone)
     setAuthorBtnText('UPDATE')
   }
 
-  function handleAuthorDelete(id: number) {
+  function handleAuthorDelete(id: UUID) {
     dispatch(deleteAuthor(id))
     toast.success('Successfully Deleted!')
   }
 
   function handleAuthorAdd(author: Author) {
-    setAuthorId(Date.now())
-    setAuthorName(author.name)
+    setAuthorName(author.authorName)
+    setEmail(author.email)
+    setPhone(author.phone)
     setAuthorBtnText('ADD')
   }
 
@@ -59,41 +67,12 @@ const AdminAuthor = () => {
   return (
     <>
       <div className="flex flex-col gap-9 items-center justify-around">
-        <section className="outline  w-screen flex flex-col gap-20 justify-between"></section>
         {/* Author form */}
         <section className="  w-screen flex flex-col justify-between">
-          {authorModalTable ? (
-            <form
-              className="border-2 border-gray-400 flex flex-col gap-2 items-center absolute rounded-lg bg-gray-700 right-0 left-0 m-auto h-44 w-96 shadow-full"
-              onSubmit={(e) => handleAuthorSubmit(e)}>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={true}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
-              <AuthorTable
-                setAuthorModalTable={setAuthorModalTable}
-                authorModalTable={authorModalTable}
-                setAuthorName={setAuthorName}
-                authorName={authorName}
-                authorBtnText={authorBtnText}
-                setAuthorBtnText={setAuthorBtnText}
-              />
-            </form>
-          ) : (
-            <></>
-          )}
           {/* Author Table  */}
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <h2 className=" text-3xl pb-2">Authors</h2>
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-20">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
@@ -114,7 +93,7 @@ const AdminAuthor = () => {
                         scope="row"
                         className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                         <div className="pl-3">
-                          <div className="text-base font-semibold">{author.name}</div>
+                          <div className="text-base font-semibold">{author.authorName}</div>
                         </div>
                       </th>
                       <td className="px-6 py-4">
@@ -162,6 +141,38 @@ const AdminAuthor = () => {
               </tbody>
             </table>
           </div>
+          {authorModalTable ? (
+            <form
+              className="border-2 border-gray-400 flex flex-col gap-2 items-center absolute rounded-lg bg-gray-700 right-0 left-0 m-auto top-0 h-76 w-96 shadow-full"
+              onSubmit={(e) => handleAuthorSubmit(e)}>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
+              <AuthorTable
+                setAuthorModalTable={setAuthorModalTable}
+                authorModalTable={authorModalTable}
+                setAuthorName={setAuthorName}
+                authorName={authorName}
+                authorBtnText={authorBtnText}
+                setAuthorBtnText={setAuthorBtnText}
+                setPhone={setPhone}
+                phone={phone}
+                setEmail={setEmail}
+                email={email}
+              />
+            </form>
+          ) : (
+            <></>
+          )}
         </section>
       </div>
     </>
