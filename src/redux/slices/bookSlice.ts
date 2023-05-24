@@ -141,7 +141,7 @@ export const addCopies = createAsyncThunk('book/copies', async (object: CopyReq)
 })
 export const fetchBooks = createAsyncThunk('books/fetch', async () => {
   try {
-    const res = await axios.get('http://localhost:8080/api/v1/book/all')
+    const res = await axios.get('https://library-backend-gtgw.onrender.com/api/v1/book/all')
     const books: BookRes[] = await res.data
     console.log(books)
     return {
@@ -236,7 +236,7 @@ export const addBook = createAsyncThunk('books/add', async (addedObject: BookReq
       isbn: addedObject.isbn,
       authorId: addedObject.authorId,
       categoryId: addedObject.categoryId,
-      publishedDate: addedObject.publishedDate,
+      publishedDate: new Date(),
       publisher: addedObject.publisher,
       cover: addedObject.cover
     })

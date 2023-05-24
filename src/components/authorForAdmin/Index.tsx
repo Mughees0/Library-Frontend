@@ -61,10 +61,10 @@ const AdminAuthor = () => {
     if (authorBtnText === 'UPDATE') {
       dispatch(updateAuthor(authorItem))
       toast.success('Successfully Update!')
-      const refresh = setTimeout(() => {
-        navigate(0)
-        clearTimeout(refresh)
-      }, 1000)
+      // const refresh = setTimeout(() => {
+      //   navigate(0)
+      //   clearTimeout(refresh)
+      // }, 1000)
     } else if (authorBtnText === 'ADD') {
       dispatch(addAuthor(authorItem))
       toast.success('Successfully Added!')

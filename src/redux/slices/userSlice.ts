@@ -18,7 +18,7 @@ const initialState: UserState = {
 }
 
 export const userSignup = createAsyncThunk('user/signup', async (object: UserReq) => {
-  const res = await axios.post('http://localhost:8080/api/v1/user/signup', {
+  const res = await axios.post('https://library-backend-gtgw.onrender.com/api/v1/user/signup', {
     username: object.username,
     password: object.password,
     role: object.role
@@ -32,7 +32,7 @@ export const userSignup = createAsyncThunk('user/signup', async (object: UserReq
 })
 
 export const userSignin = createAsyncThunk('user/signin', async (object: UserReq) => {
-  const res = await axios.post('http://localhost:8080/api/v1/user/signin', {
+  const res = await axios.post('https://library-backend-gtgw.onrender.com/api/v1/user/signin', {
     username: object.username,
     password: object.password,
     role: object.role

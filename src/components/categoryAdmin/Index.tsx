@@ -58,10 +58,10 @@ const AdminCategory = () => {
     if (categoryBtnText === 'UPDATE') {
       dispatch(updateCategory(categoryItem))
       toast.success('Successfully Update!')
-      const refresh = setTimeout(() => {
-        navigate(0)
-        clearTimeout(refresh)
-      }, 1000)
+      // const refresh = setTimeout(() => {
+      //   navigate(0)
+      //   clearTimeout(refresh)
+      // }, 1000)
     } else if (categoryBtnText === 'ADD') {
       dispatch(addCategory(categoryItem))
       toast.success('Successfully Added!')

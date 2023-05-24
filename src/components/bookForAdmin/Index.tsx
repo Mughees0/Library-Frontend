@@ -82,10 +82,10 @@ const AdminBooks = () => {
     if (btnText === 'ADD') {
       dispatch(addBook(bookInput))
       toast.success('Successfully Added!')
-      const refresh = setTimeout(() => {
-        navigate(0)
-        clearTimeout(refresh)
-      }, 1000)
+      // const refresh = setTimeout(() => {
+      //   navigate(0)
+      //   clearTimeout(refresh)
+      // }, 1000)
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
       toast.success('Successfully Update!')
