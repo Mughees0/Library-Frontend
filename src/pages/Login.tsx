@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import useGoogleData from '../hooks/useGoogleData'
 import useGoogleLogin from '../hooks/useGoogleLogin'
@@ -13,12 +13,11 @@ const Login = () => {
   const google = useGoogleLogin()
   const [user, ourToken] = useGoogleData()
   const navigate = useNavigate()
-  const [roles, setRoles] = useState<Role>()
+  const [roles, setRoles] = useState<Role>(Role.USER)
   const [usernameText, setUsernameText] = useState('')
   const [passwordText, setPasswordText] = useState('')
 
   const { data, token } = useSelector((state: RootState) => state.userData)
-  console.log(data, token)
 
   const dispatch = useDispatch<AppDispatch>()
 
@@ -47,7 +46,10 @@ const Login = () => {
           {/* <div id="signIn"></div> */}
         </div>
       ) : (
-        <>{navigate('/')}</>
+        <>
+          {navigate('/')}
+          {navigate(0)}
+        </>
       )}
     </>
   )

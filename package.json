@@ -18,7 +18,7 @@
     "@types/gsi": "^0.0.0",
     "@types/yargs": "^17.0.24",
     "axios": "^1.4.0",
-    "flowbite": "^1.6.4",
+    "flowbite": "^1.6.5",
     "flowbite-react": "^0.4.2",
     "googleapis": "^114.0.0",
     "jwt-decode": "^3.1.2",

@@ -20,7 +20,6 @@ export const fetchAuthor = createAsyncThunk('author/fetch', async () => {
   try {
     const res = await api.get(`/author/all`)
     const authors: Author[] = await res.data
-    console.log(authors)
     return {
       authors
     }

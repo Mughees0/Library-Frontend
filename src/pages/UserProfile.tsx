@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AppDispatch, RootState } from '../store'
 import { borrowedBooks, returnBook } from '../redux/slices/bookSlice'
 
@@ -8,12 +8,24 @@ function UserProfile() {
   const Books = useSelector((state: RootState) => state.bookData.borrowedBooks)
   const dispatch = useDispatch<AppDispatch>()
   const { userId } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(borrowedBooks(userId))
-  }, [userId, Books])
+    const refresh = setTimeout(() => {
+      dispatch(borrowedBooks(userId))
+    }, 100)
+
+    return () => {
+      clearTimeout(refresh)
+    }
+  }, [userId])
+
   function handleReturn(id: string) {
     dispatch(returnBook({ userId: userId, bookCopyId: id }))
+    const refresh = setTimeout(() => {
+      navigate(0)
+      clearTimeout(refresh)
+    }, 100)
   }
 
   return (

@@ -13,7 +13,7 @@ function BookCopies() {
 
   useEffect(() => {
     dispatch(fetchBooks())
-  }, [Books])
+  }, [])
 
   function handleAddCopies(id: UUID) {
     dispatch(addCopies({ bookId: id, quantity: quantity, status: status }))

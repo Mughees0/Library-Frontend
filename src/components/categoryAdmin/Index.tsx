@@ -11,14 +11,16 @@ import { Category } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
 import { UUID } from 'crypto'
 import CategoryTable from './Form'
+import { useNavigate } from 'react-router-dom'
 
 const AdminCategory = () => {
   const { categories } = useSelector((state: RootState) => state.categoryData)
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchCategory())
-  }, [categories])
+  }, [])
 
   // categories
   const [categoryId, setCategoryId] = useState(0)
@@ -40,6 +42,10 @@ const AdminCategory = () => {
   function handleCategoryDelete(id: UUID) {
     dispatch(deleteCategory(id))
     toast.success('Successfully Deleted!')
+    const refresh = setTimeout(() => {
+      navigate(0)
+      clearTimeout(refresh)
+    }, 1000)
   }
 
   function handleCategoryAdd(category: Category) {
@@ -52,9 +58,17 @@ const AdminCategory = () => {
     if (categoryBtnText === 'UPDATE') {
       dispatch(updateCategory(categoryItem))
       toast.success('Successfully Update!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else if (categoryBtnText === 'ADD') {
       dispatch(addCategory(categoryItem))
       toast.success('Successfully Added!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else {
       toast('Please select an option, Add or update')
     }

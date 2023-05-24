@@ -7,14 +7,16 @@ import { toast, ToastContainer } from 'react-toastify'
 import BookTable from './Form'
 import { UUID } from 'crypto'
 import { deleteAuthor } from '../../redux/slices/authorSlice'
+import { useNavigate } from 'react-router-dom'
 
 const AdminBooks = () => {
   const Books = useSelector((state: RootState) => state.bookData.books)
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchBooks())
-  }, [Books])
+  }, [])
 
   //Books
   const [id, setId] = useState<UUID>()
@@ -55,8 +57,12 @@ const AdminBooks = () => {
   }
 
   function handleDelete(id: UUID): void {
-    dispatch(deleteAuthor(id))
+    dispatch(deleteBook(id))
     toast.success('Successfully Deleted!')
+    const refresh = setTimeout(() => {
+      navigate(0)
+      clearTimeout(refresh)
+    }, 1000)
   }
 
   function handleAdd(object: BookReq): void {
@@ -76,9 +82,17 @@ const AdminBooks = () => {
     if (btnText === 'ADD') {
       dispatch(addBook(bookInput))
       toast.success('Successfully Added!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else if (btnText === 'UPDATE') {
       dispatch(updateBook(bookInput))
       toast.success('Successfully Update!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else {
       toast('Please select an option, Add or update')
     }

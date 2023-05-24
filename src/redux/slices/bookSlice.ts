@@ -141,7 +141,7 @@ export const addCopies = createAsyncThunk('book/copies', async (object: CopyReq)
 })
 export const fetchBooks = createAsyncThunk('books/fetch', async () => {
   try {
-    const res = await api.get('/book/all')
+    const res = await axios.get('http://localhost:8080/api/v1/book/all')
     const books: BookRes[] = await res.data
     console.log(books)
     return {

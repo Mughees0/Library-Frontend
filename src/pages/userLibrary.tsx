@@ -56,13 +56,11 @@ const userLibrary = () => {
 
   const [itemOffset, setItemOffset] = useState(0)
   const endOffset = itemOffset + 3
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`)
   const currentItems = Books.slice(itemOffset, endOffset)
   const pageCount = Math.ceil(Books.length / 3)
 
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * 3) % Books.length
-    console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`)
     setItemOffset(newOffset)
   }
   return (

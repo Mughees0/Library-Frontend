@@ -6,14 +6,16 @@ import { Author } from '../../types'
 import { toast, ToastContainer } from 'react-toastify'
 import AuthorTable from './Form'
 import { UUID } from 'crypto'
+import { useNavigate } from 'react-router-dom'
 
 const AdminAuthor = () => {
   const author = useSelector((state: RootState) => state.authorData.auhtors)
   const dispatch = useDispatch<AppDispatch>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchAuthor())
-  }, [author])
+  }, [])
 
   // Authors
   const [authorId, setAuthorId] = useState(0)
@@ -41,6 +43,10 @@ const AdminAuthor = () => {
   function handleAuthorDelete(id: UUID) {
     dispatch(deleteAuthor(id))
     toast.success('Successfully Deleted!')
+    const refresh = setTimeout(() => {
+      navigate(0)
+      clearTimeout(refresh)
+    }, 1000)
   }
 
   function handleAuthorAdd(author: Author) {
@@ -55,9 +61,17 @@ const AdminAuthor = () => {
     if (authorBtnText === 'UPDATE') {
       dispatch(updateAuthor(authorItem))
       toast.success('Successfully Update!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else if (authorBtnText === 'ADD') {
       dispatch(addAuthor(authorItem))
       toast.success('Successfully Added!')
+      const refresh = setTimeout(() => {
+        navigate(0)
+        clearTimeout(refresh)
+      }, 1000)
     } else {
       toast('Please select an option, Add or update')
     }
