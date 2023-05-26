@@ -26,7 +26,7 @@ const Nav = () => {
             <img src={logo} className="h-8 mr-3" alt="Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap ">Mr. Books</span>
           </a>
-          <div className="flex items-center md:order-2">
+          <div className="flex items-center md:order-2 hover:text-yellow-400">
             {!token && !mytoken ? (
               <Link to="/login">Login</Link>
             ) : (
@@ -40,7 +40,11 @@ const Nav = () => {
                     data-dropdown-toggle="user-dropdown"
                     data-dropdown-placement="bottom">
                     <span className="sr-only">Open user menu</span>
-                    <img className="w-8 h-8 rounded-full" src={user.picture} alt="user photo" />
+                    <img
+                      className="w-8 h-8 rounded-full bg-cover"
+                      src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg"
+                      alt="user photo"
+                    />
                   </button>
                 </div>
                 <div
@@ -93,7 +97,7 @@ const Nav = () => {
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="mobile-menu-2">
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-600 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-600  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-600 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-600  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 hover:text-yellow-600">
               <li>
                 <Link
                   to="/"

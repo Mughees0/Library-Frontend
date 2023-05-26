@@ -27,6 +27,12 @@ function App() {
 
   if (mytoken) {
     decoded = jwtDecode(mytoken)
+    console.log(decoded.role)
+  } else {
+    decoded = jwtDecode(
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdWdoZWVzMSIsInJvbGUiOiJVU0VSIiwidXNlcl9pZCI6IjlhOWNjYTUxLWE3MDAtNDA5ZS1hY2I4LTZjZDgxMmJkZThiMCIsImV4cCI6MTY4MzczNjg4OSwiaWF0IjoxNjgzNzAwODg5LCJ1c2VybmFtZSI6Im11Z2hlZXMxIn0.rKcl6rPecmoLC_Yh9sPTghzVYV8sHtyouGJjXcEkBDA'
+    )
+    console.log(decoded.role)
   }
 
   return (
@@ -40,15 +46,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<UserLibrary />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
-          {decoded?.role == 'USER' || decoded?.role == 'ADMIN' ? (
-            <Route path="/user/:userId" element={<UserProfile />} />
-          ) : (
-            <></>
-          )}
-          {decoded?.role == 'ADMIN' || user?.email == 'abdul.mughees009@gmail.com' ? (
+          {decoded.role == 'ADMIN' || user.email == 'abdul.mughees009@gmail.com' ? (
             <Route>
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/copies" element={<BookCopies />} />
+              <Route path="/user/:userId" element={<UserProfile />} />
             </Route>
           ) : (
             <Route
